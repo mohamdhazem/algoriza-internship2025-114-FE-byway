@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-primary: hsl(var(--primary));
+
+  --color-custom-gray: #fbfbfb;
+
+  /* Shadow */
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 6px 20px rgba(0, 0, 0, 0.15);
+  --shadow-glow: 0 0 15px rgba(79, 70, 229, 0.5);
+  --shadow-blue-soft: 0 0 8px rgba(59, 130, 246, 0.25);
+
+  /* Fonts */
+  --font-inter: "Inter", sans-serif;
+}
+
+@layer base {
+  :root {
+    --custom-gray: 222 22% 91%;
+  }
+
+  .font-ibm {
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+  }
+
+  body {
+    @apply font-sans;
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1 {
+    @apply text-[40px] font-bold text-gray-900;
+  }
+
+  h2 {
+    @apply text-[32px] font-semibold text-gray-900;
+  }
+
+  h3 {
+    @apply text-[24px] font-semibold text-gray-900;
+  }
+
+  h4 {
+    @apply text-xl font-semibold text-gray-900;
+  }
+
+  h5 {
+    @apply text-lg font-semibold text-gray-700;
+  }
+
+  p {
+    @apply text-[16px] font-medium text-gray-700;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    @apply opacity-100 translate-y-0;
+  }
+
+  input:-webkit-autofill {
+    /* Tailwind's blue-600 */
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+  }
+}
+
+@layer components {
+  .input-style {
+    @apply text-sm font-medium text-[#2B3453] bg-white w-full px-4 py-2.5 border rounded-lg border-gray-300 focus:outline-blue-950/30;
+  }
+
+  @layer components {
+
+    /* Quill container: remove default border */
+    .ql-container {
+      @apply border-none m-0 p-0 rounded-none;
+    }
+
+    /* Editor itself */
+    .ql-editor {
+      @apply w-full h-full text-sm font-medium text-[#2B3453] border-gray-100 focus:outline-none;
+      font-family: "IBM Plex Sans Arabic", sans-serif;
+
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+
+      min-height: 40px;
+      /* desired input height */
+      line-height: 1.5;
+
+      padding: 0.625rem 0.75rem;
+      /* matches placeholder exactly */
+      box-sizing: border-box;
+      /* ensures cursor respects padding */
+    }
+
+    /* Placeholder styling */
+    .ql-editor.ql-blank::before {
+      content: attr(data-placeholder);
+      pointer-events: none;
+      position: absolute;
+      top: 0.625rem;
+      /* match editor padding-top */
+      left: 0.75rem;
+
+      /* Font style */
+      font-family: "IBM Plex Sans Arabic", sans-serif;
+      /* custom font */
+      font-size: 1rem;
+      /* font size */
+      font-weight: 400;
+      /* normal, bold = 700 */
+      font-style: normal;
+      /* optional: italic, normal, etc. */
+      color: #96A0B6;
+
+      line-height: 1.5;
+      transition: opacity 0.2s;
+    }
+
+    .ql-editor:not(.ql-blank)::before {
+      opacity: 0;
+    }
+
+    .ql-editor p {
+      margin: 0;
+    }
+
+  }
+
+  #root {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+
+  }
+}
