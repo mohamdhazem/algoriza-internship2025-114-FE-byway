@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { showError, showSuccess } from "../../../utils/popup";
 import { useAtom, useSetAtom } from "jotai";
 import { cartCoursesCountAtom, refreshCartCoursesCountAtom } from "../../../store/cartAtom";
-import api from "../../../Api";
+import api from "../../../api";
 
 export const CourseDetailsContent = ({ id }) => {
     const [courseDetails, setCourseDetials] = useState(null);

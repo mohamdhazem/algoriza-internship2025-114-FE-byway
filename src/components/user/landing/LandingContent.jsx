@@ -5,8 +5,8 @@ import { useEffect, useState, useRef } from "react"
 import { TopInstructorsSlider } from "./TopInstructorsSlider"
 import { CustomerReviews } from "./CustormeReviews"
 import { StatsSection } from "./StatsSection"
-import api from "../../../Api"
 import { isLoggedIn } from "../../../auth"
+import api from "../../../api"
 
 export const LandingContent = () => {
 

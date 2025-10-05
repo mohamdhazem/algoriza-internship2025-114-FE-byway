@@ -1,11 +1,11 @@
 import { ChevronRight } from "lucide-react"
 import RateDisplay from "../courses/RateDisplay"
 import { useEffect, useState } from "react";
-import api from "../../../Api";
 import { showError, showSuccess } from "../../../utils/popup";
 import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { refreshCartCoursesCountAtom } from "../../../store/cartAtom";
+import api from "../../../api";
 
 export const PaymentDetails = () => {
     const [courses, setCourses] = useState([]);

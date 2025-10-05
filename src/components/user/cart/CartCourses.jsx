@@ -3,10 +3,10 @@ import RateDisplay from "../courses/RateDisplay"
 import { useEffect, useState } from "react"
 import { showError, showSuccess } from "../../../utils/popup";
 import { getEnumLabel, LevelEnum } from "../../../utils/enums";
-import api from "../../../Api";
 import { useAtom, useSetAtom } from "jotai";
 import { cartCoursesCountAtom, refreshCartCoursesCountAtom } from "../../../store/cartAtom";
 import { Link, useNavigate } from "react-router-dom";
+import api from "../../../api";
 
 export const CartCourses = () => {
 
