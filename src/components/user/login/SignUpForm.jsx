@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSetAtom } from "jotai";
 import { refreshUserAtom, userAtom } from "../../../store/userAtom";
 
-export const SignUpForm = () => {
+export const Signupform = () => {
     const navigate = useNavigate();
     const [errors, setErrors] = useState({});
     const setUser = useSetAtom(userAtom);
