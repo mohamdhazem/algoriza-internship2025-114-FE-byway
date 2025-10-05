@@ -4,13 +4,13 @@ import { LevelDropdown } from "./LevelDropdown";
 import { InstructorDropdown } from "./InstrucrotDropdown";
 import RateInput from "../shared/RateInput";
 import DescriptionEditor from "./TextArea";
-import Editor from "./editor";
 import TextArea from "./TextArea";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Trash } from "lucide-react";
 import api from "../../../api";
 import { validateAndPreviewImage } from "../../../utils/image";
 import { showError, showSuccess } from "../../../utils/popup";
+import Editor from "./Editor";
 
 export const CourseForm = ({ mode, courseId }) => {
 
