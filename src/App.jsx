@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { UserLogin } from './pages/user/UserLogin'
 import { AdminLogin } from './pages/admin/AdminLogin'
-import { SignUp } from './pages/user/SignUp'
+// import { SignUp } from './pages/user/SignUp'
 import { Dashboard } from './pages/admin/Dashboard'
 import { Instructors } from './pages/admin/Instructors'
 import { Courses } from './pages/admin/Courses'
@@ -28,7 +28,7 @@ function App() {
         <Routes>
           <Route path="/AdminLogin" element={<AdminLogin></AdminLogin>}></Route>
           <Route path="/UserLogin" element={<UserLogin></UserLogin>}></Route>
-          <Route path="/SignUp" element={<SignUp></SignUp>}></Route>
+          {/* <Route path="/SignUp" element={<SignUp></SignUp>}></Route> */}
           <Route path="/Landing" element={<Landing></Landing>}></Route>
           <Route path="/*" element={<Landing></Landing>}></Route>
           <Route path="/UserCourses" element={<UserCourses></UserCourses>}></Route>

@@ -1,5 +1,5 @@
 import { NavBar } from "../../components/user/shared/NavBar"
-import { Signupform } from "../../components/user/Login/Signupform";
+import { Signupform } from "../../components/user/Login/Signupform"
 
 export const SignUp = () => {
     return (
