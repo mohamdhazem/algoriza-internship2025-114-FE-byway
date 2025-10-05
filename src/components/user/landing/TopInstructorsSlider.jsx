@@ -24,10 +24,10 @@ export const TopInstructorsSlider = ({ topInstructors }) => {
     const translatePercent = clampedIndex * stepSize;
 
     return (
-        <div className="px-20">
+        <div className="px-5 md:px-10 lg:px-20 gap-10">
             {/* Header */}
             <div className="flex justify-between items-center">
-                <h2 className="font-semibold text-2xl">Top Instructors</h2>
+                <h2 className="font-semibold text-[18px] sm:text-xl md:text-2xl">Top Instructors</h2>
                 <div className="flex justify-between gap-5 w-30">
                     <button
                         onClick={handlePrev}

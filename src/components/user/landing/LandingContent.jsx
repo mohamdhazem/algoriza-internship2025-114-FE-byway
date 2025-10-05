@@ -75,92 +75,96 @@ export const LandingContent = () => {
     }, []);
 
     return (
-        <div className=" py-20 font-inter">
+        <div className="py-20 font-inter">
             {/* main content */}
-            <div id="main" className="flex justify-between gap-35 px-20">
+            <div id="main" className="px-5 md:px-10 lg:px-20 gap-10 md:gap-5 lg:gap-35 grid grid-cols-1 md:grid-cols-2 items-center">
                 <div
                     ref={main1Ref}
-                    className="flex-1 flex flex-col justify-center text-start gap-5 opacity-0 translate-x-[-50px] transition-all duration-1200 ease-out">
-                    <h2 className="font-bold text-gray-900 text-[40px] leading-11 w-[480px]">Unlock Your Potential with Byway</h2>
-                    <p className="text-[16px] text-gray-700">
+                    className="flex flex-col justify-center text-start gap-5 opacity-0 translate-x-[-50px] transition-all duration-1200 ease-out">
+                    <h2 className="font-bold text-gray-900 text-2xl lg:text-[40px] md:text-3xl sm:text-2xl leading-snug w-full max-w-[480px]">
+                        Unlock Your Potential with Byway
+                    </h2>
+                    <p className="text-[16px] text-gray-700 max-w-[500px]">
                         Welcome to Byway, where learning knows no bounds. We believe that education is the key to personal and professional growth, and we're here to guide you on your journey to success.
                     </p>
-                    {isLoggedIn() === true ? (<div />) : (
+                    {isLoggedIn() === true ? (
+                        <div />
+                    ) : (
                         <Link
-                         to={"/usercourses"}
-                        className="cursor-pointer rounded-lg bg-[#3B82F6] text-white w-[165px] h-12 flex justify-center items-center">
+                            to={"/usercourses"}
+                            className="cursor-pointer rounded-lg bg-[#3B82F6] text-white w-full max-w-[165px] h-12 flex justify-center items-center">
                             Start your journey
                         </Link>
                     )}
-
-
                 </div>
+
                 <div
                     ref={main2Ref}
-                    className="flex-1 flex flex-row relative gap-10 overflow-visible opacity-0 translate-x-[-50px] transition-all duration-1800 ease-out">
-                    <div className="flex-1 flex flex-col justify-center items-center">
-                        <div className="bg-[#F87171] rounded-full w-54 h-54 relative overflow-visible z-10">
+                    className="flex flex-row relative flex-wrap md:flex-nowrap gap-1 sm:gap-6 md:gap-10 overflow-visible opacity-0 translate-x-[-50px] transition-all duration-1800 ease-out">
+
+                    <div className="flex-1 flex flex-col justify-center items-center min-w-[140px] sm:min-w-[180px] md:min-w-[200px]">
+                        <div className="bg-[#F87171] rounded-full w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-54 lg:h-54 relative overflow-visible z-10">
                             <img
-                                src="images/girl2.png"
-                                className="absolute bottom-0 w-60 h-70 left-27 -translate-x-27 object-contain rounded-b-full"
+                                src="images/girl2.webp"
+                                className="absolute bottom-0 w-28 sm:w-36 md:w-44 lg:w-60 h-auto left-1/2 -translate-x-1/2 object-contain rounded-b-full"
                                 alt=""
                             />
-                            <div className="absolute -bottom-4 -left-4.5 w-62 h-30 border-t-0 border-1 border-[#CBD5E1] rounded-b-full z-0"></div>
-
+                            <div className="absolute -bottom-3 -left-3 w-24 sm:w-32 md:w-40 lg:w-62 h-12 sm:h-16 md:h-20 lg:h-30 border-t-0 border-1 border-[#CBD5E1] rounded-b-full z-0"></div>
                         </div>
-                        <img src="images/Frame.png"
-                            className="absolute -left-5 top-35"
+                        <img
+                            src="images/Frame.png"
+                            className="absolute -left-[7%] top-16 sm:top-20 md:top-28 lg:top-35 w-10 sm:w-14 md:w-16 lg:w-20"
                             alt=""
                         />
                     </div>
 
-                    <div className="flex-1 flex flex-col justify-between items-start gap-10">
-                        <div className="relative bg-[#60A5FA] rounded-full w-54 h-54 z-10">
+
+                    {/* Second column */}
+                    <div className="flex-1 flex flex-col justify-between items-start min-w-[140px] sm:min-w-[180px] md:min-w-[200px] mt-6 md:mt-0">
+
+                        <div className="relative bg-[#60A5FA] rounded-full w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-54 lg:h-54 z-10">
                             <img
-                                src="images/boy.png"
-                                className="absolute bottom-0 w-60 h-65 left-27 -translate-x-27 object-contain rounded-b-full z-10"
+                                src="images/boy.webp"
+                                className="absolute bottom-0 w-28 sm:w-36 md:w-44 lg:w-60 h-auto left-1/2 -translate-x-1/2 object-contain rounded-b-full z-10"
                                 alt=""
                             />
-                            <div className="absolute bottom-1 -right-3 w-30 h-62 border-l-0 border-1 border-[#CBD5E1] rounded-r-full z-0 -rotate-[20deg]"></div>
-
+                            <div className="absolute bottom-1 -right-2 w-12 sm:w-16 md:w-20 lg:w-30 h-28 sm:h-36 md:h-44 lg:h-62 border-l-0 border-1 border-[#CBD5E1] rounded-r-full z-0 -rotate-[20deg]"></div>
                         </div>
-                        <img src="images/Frame.png"
-                            className="absolute left-67 top-0 rotate-[82deg]"
-                            alt=""
-                        />
-                        <div className="relative bg-[#FACC15] rounded-full w-54 h-54">
+
+                        <div className="relative bg-[#FACC15] rounded-full w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-54 lg:h-54 mt-4 md:mt-6">
                             <img
-                                src="images/girl1.png"
-                                className="absolute bottom-2 w-50 h-50 left-35 -translate-x-27 object-cover rounded-b-full z-10 scale-x-[-1]"
+                                src="images/girl1.webp"
+                                className="absolute bottom-0 w-28 sm:w-36 md:w-44 lg:w-60 h-[95%] left-[50%] -translate-x-1/2 object-cover rounded-b-full z-10 scale-x-[-1]"
                                 alt=""
                             />
+                            <div className="absolute -bottom-6 sm:-bottom-8 md:-bottom-12 lg:-bottom-15 -right-1 w-12 sm:w-16 md:w-20 lg:w-30 h-28 sm:h-36 md:h-44 lg:h-62 border-l-0 border-1 border-[#CBD5E1] rounded-r-full z-0 rotate-[40deg]"></div>
 
-                            <div className="absolute -bottom-15 -right-1 w-30 h-62 border-l-0 border-1 border-[#CBD5E1] rounded-r-full z-0 rotate-[40deg]"></div>
-
-                            <span className="w-[170px] h-[100px] bg-white absolute -left-15 bottom-5 rounded-xl drop-shadow-lg flex flex-col gap-2 pt-2.5 px-1.5 z-20">
-                                <div className="flex flex-row -space-x-3">
-                                    <img src="images/community5.png" className="w-10 h-10 rounded-full" alt="" />
-                                    <img src="images/community4.png" className="w-10 h-10 rounded-full" alt="" />
-                                    <img src="images/community3.png" className="w-10 h-10 rounded-full" alt="" />
-                                    <img src="images/community2.png" className="w-10 h-10 rounded-full" alt="" />
-                                    <img src="images/community1.png" className="w-10 h-10 rounded-full" alt="" />
+                            <span className="w-[120px] sm:w-[150px] md:w-[170px] h-auto min-h-[70px] sm:min-h-[80px] md:min-h-[100px] bg-white absolute -left-6 sm:-left-10 md:-left-15 bottom-3 sm:bottom-4 md:bottom-5 rounded-xl drop-shadow-lg flex flex-col gap-1.5 sm:gap-2 pt-2 px-1.5 z-20">
+                                <div className="flex flex-row -space-x-2 sm:-space-x-3">
+                                    <img src="images/community5.png" className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
+                                    <img src="images/community4.png" className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
+                                    <img src="images/community3.png" className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
+                                    <img src="images/community2.png" className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
+                                    <img src="images/community1.png" className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
                                 </div>
-                                <div className="text-gray-900 font-semibold leading-4 text-sm text-start">
+                                <div className="text-gray-900 font-semibold leading-4 text-[10px] sm:text-xs md:text-sm text-start">
                                     Join our community of 1200+ Students
                                 </div>
                             </span>
                         </div>
                     </div>
+
                 </div>
             </div>
+
 
             {/* statistics */}
             <StatsSection />
 
             {/* Top categories */}
-            <div className="px-20">
+            <div className="px-5 md:px-10 lg:px-20 gap-10">
                 <div className="flex justify-between items-center">
-                    <h2 className="font-semibold text-2xl">Top Categories</h2>
+                    <h2 className="font-semibold text-[18px] sm:text-xl md:text-2xl">Top Categories</h2>
                     <div className="flex justify-between gap-5 w-30">
                         <button className="flex-1 py-1 px-3.5 bg-[#94A3B8] text-white rounded-lg cursor-pointer">
                             <ChevronLeft />
@@ -184,9 +188,9 @@ export const LandingContent = () => {
             </div>
 
             {/* Top course */}
-            <div className="px-20 my-10">
+            <div className="px-5 md:px-10 lg:px-20 gap-10 my-10">
                 <div className="flex justify-between items-center">
-                    <h2 className="font-semibold text-2xl">Top Courses</h2>
+                    <h2 className="font-semibold text-[18px] sm:text-xl md:text-2xl">Top Courses</h2>
                     <Link
                         to={"/usercourses"}
                         className="text-[#3B82F6] -mr-3">
@@ -207,31 +211,31 @@ export const LandingContent = () => {
             <CustomerReviews />
 
             {/* our services */}
-            <div className="px-30 py-10">
+            <div className="px-6 md:px-30 py-10">
                 {/* Section 1 */}
                 <div
                     ref={section1Ref}
-                    className="flex justify-evenly items-center gap-20 opacity-0 translate-y-10 transition-all duration-700 ease-out"
+                    className="flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-20 opacity-0 translate-y-10 transition-all duration-700 ease-out"
                 >
                     <div className="flex justify-center items-start">
                         <img
                             src="images/becomeInstructor.png"
-                            className="w-100 h-105"
+                            className="w-60 h-60 md:w-100 md:h-105 object-contain"
                             alt=""
                         />
                     </div>
                     <div className="flex flex-col justify-center items-start gap-2.5 text-start">
-                        <h2 className="text-xl font-semibold text-black">
+                        <h2 className="text-lg md:text-xl font-semibold text-black">
                             Become an Instructor
                         </h2>
-                        <p className="text-[16px] text-[#1D2939]">
+                        <p className="text-sm md:text-[16px] text-[#1D2939] leading-relaxed">
                             Instructors from around the world teach millions of students on
-                            Byway. <br /> We provide the tools and skills to teach what you
-                            love.
+                            Byway. <br className="hidden md:block" /> We provide the tools and
+                            skills to teach what you love.
                         </p>
-                        <button className="bg-[#020617] text-white flex items-center justify-center gap-2 px-5 py-3 rounded-lg cursor-pointer">
+                        <button className="bg-[#020617] text-white flex items-center justify-center gap-2 px-4 py-2 md:px-5 md:py-3 rounded-lg cursor-pointer text-sm md:text-base">
                             <p className="text-white">Start Your Instructor Journey</p>
-                            <ArrowRightIcon />
+                            <ArrowRightIcon className="w-4 h-4 md:w-5 md:h-5" />
                         </button>
                     </div>
                 </div>
@@ -239,32 +243,35 @@ export const LandingContent = () => {
                 {/* Section 2 */}
                 <div
                     ref={section2Ref}
-                    className="flex justify-evenly items-center gap-20 pt-15 opacity-0 translate-y-10 transition-all duration-700 ease-out delay-200"
+                    className="flex flex-col-reverse md:flex-row justify-evenly items-center gap-10 md:gap-20 pt-15 opacity-0 translate-y-10 transition-all duration-700 ease-out delay-200"
                 >
                     <div className="flex flex-col justify-center items-start gap-2.5 text-start">
-                        <h2 className="text-xl font-semibold text-black">
+                        <h2 className="text-lg md:text-xl font-semibold text-black">
                             Transform your life through education
                         </h2>
-                        <p className="text-[16px] text-[#1D2939]">
+                        <p className="text-sm md:text-[16px] text-[#1D2939] leading-relaxed">
                             Learners around the world are launching new careers, advancing in{" "}
-                            <br /> their fields, and enriching their lives.
+                            <br className="hidden md:block" /> their fields, and enriching their lives.
                         </p>
                         <Link
                             to={"/usercourses"}
-                            className="bg-[#020617] text-white flex items-center justify-center gap-2 px-5 py-3 rounded-lg cursor-pointer">
+                            className="bg-[#020617] text-white flex items-center justify-center gap-2 px-4 py-2 md:px-5 md:py-3 rounded-lg cursor-pointer text-sm md:text-base"
+                        >
                             <p className="text-white">Checkout Courses</p>
-                            <ArrowRightIcon />
+                            <ArrowRightIcon className="w-4 h-4 md:w-5 md:h-5" />
                         </Link>
                     </div>
                     <div className="flex justify-center items-center">
                         <img
                             src="images/becomeInstructor2.png"
-                            className="w-118 h-95"
+                            className="w-60 h-60 md:w-118 md:h-95 object-contain"
                             alt=""
                         />
                     </div>
                 </div>
             </div>
+
+
 
 
         </div>

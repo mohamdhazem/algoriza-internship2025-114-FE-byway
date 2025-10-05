@@ -37,7 +37,7 @@ const Counter = ({ target }) => {
   }, [target]);
 
   return (
-    <h3 ref={ref} className="text-[32px] font-semibold">
+    <h3 ref={ref} className="text-xl sm:text-2xl md:text-[32px] md:font-semibold">
       {count}+
     </h3>
   );
@@ -45,31 +45,31 @@ const Counter = ({ target }) => {
 
 export const StatsSection = () => {
   return (
-    <div className="flex justify-between bg-[#F8FAFC] text-[#0F172A] my-20 py-10 px-20">
+    <div className="flex justify-between bg-[#F8FAFC] text-[#0F172A] my-20 py-10 px-5 md:px-10 lg:px-20">
       <div className="flex flex-col items-center">
         <Counter target={250} />
-        <p className="text-[14px]">Courses by our best mentors</p>
+        <p className="text-xs md:text-[14px]">Courses by our best mentors</p>
       </div>
 
       <div className="w-1 h-14 bg-[#E2E8F0]"></div>
 
       <div className="flex flex-col items-center">
         <Counter target={1000} />
-        <p className="text-[14px]">Courses by our best mentors</p>
+        <p className="text-xs md:text-[14px]">Courses by our best mentors</p>
       </div>
 
       <div className="w-1 h-14 bg-[#E2E8F0]"></div>
 
       <div className="flex flex-col items-center">
         <Counter target={15} />
-        <p className="text-[14px]">Courses by our best mentors</p>
+        <p className="text-xs md:text-[14px]">Courses by our best mentors</p>
       </div>
 
       <div className="w-1 h-14 bg-[#E2E8F0]"></div>
 
       <div className="flex flex-col items-center">
         <Counter target={2400} />
-        <p className="text-[14px]">Courses by our best mentors</p>
+        <p className="text-xs md:text-[14px]">Courses by our best mentors</p>
       </div>
     </div>
   );
