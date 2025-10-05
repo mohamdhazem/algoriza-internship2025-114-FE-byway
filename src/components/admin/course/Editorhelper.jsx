@@ -3,11 +3,12 @@ import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
 import { Bold, Link2 } from "lucide-react";
 
-export default Editor = ({ comingValue, type, onchange, disabled = false }) => {
+
+export const Editorhelper = ({ comingValue, type, onchange, disabled = false }) => {
     const [value, setValue] = useState(comingValue || "");
 
     useEffect(() => {
-        if (comingValue !== value) {    
+        if (comingValue !== value) {
             setValue(comingValue || "");
         }
     }, [comingValue]);

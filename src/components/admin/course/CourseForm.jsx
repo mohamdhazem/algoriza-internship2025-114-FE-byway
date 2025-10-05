@@ -10,7 +10,7 @@ import { ArrowLeft, Trash } from "lucide-react";
 import api from "../../../api";
 import { validateAndPreviewImage } from "../../../utils/image";
 import { showError, showSuccess } from "../../../utils/popup";
-import Editor from "./Editor";
+import { Editorhelper } from "./Editorhelper";
 
 export const CourseForm = ({ mode, courseId }) => {
 
@@ -425,7 +425,7 @@ export const CourseForm = ({ mode, courseId }) => {
                     <div className="flex items-center gap-4 w-full">
                         <div className="flex flex-col items-start w-1/2">
                             {/* <TextArea value={formData.description} type={"description"} onchange={handleChange}></TextArea> */}
-                            <Editor
+                            <Editorhelper
                                 comingValue={formData.description}
                                 type={"description"}
                                 onchange={handleChange}
@@ -434,7 +434,7 @@ export const CourseForm = ({ mode, courseId }) => {
                             {errors.description && <p className="text-red-500 text-xs">{errors.description}</p>}
                         </div>
                         <div className="flex flex-col items-start w-1/2">
-                            <Editor
+                            <Editorhelper
                                 comingValue={formData.certification}
                                 type={"certification"}
                                 onchange={handleChange}
