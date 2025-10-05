@@ -6,7 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import { refreshUserAtom, userAtom } from "../../store/userAtom";
 import { useAtom, useSetAtom } from "jotai";
 import { cartCoursesCountAtom, refreshCartCoursesCountAtom } from "../../store/cartAtom";
-import { api } from "../../api";
+import api from "../../api";
 
 // based on role will call the suitable login api
 export const LoginForm = ({ role }) => {
