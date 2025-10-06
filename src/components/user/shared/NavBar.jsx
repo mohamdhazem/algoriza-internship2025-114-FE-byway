@@ -33,9 +33,9 @@ export const NavBar = () => {
                 <img
                     src="/icons/37c5de785384c3fafe195a0ef1d99825e88d3fdf.png"
                     alt="logo"
-                    className="h-8 w-[30%] md:h-10 md:w-10"
+                    className="h-8 w-full md:h-10 md:w-10"
                 />
-                <h3 className="text-gray-700 font-semibold md:text-[16px] md:font-medium ml-2">Byway</h3>
+                <h3 className="text-gray-700 font-medium text-[18px] md:text-[16px] md:font-medium ml-0.5 md:m-0">Byway</h3>
             </Link>
 
             <div className="hidden md:flex md:items-center md:w-full md:gap-4">

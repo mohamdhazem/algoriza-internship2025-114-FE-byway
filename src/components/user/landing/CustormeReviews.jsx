@@ -63,12 +63,9 @@ export const CustomerReviews = () => {
 
     const handleNext = () => {
         let step;
-        if (window.innerWidth < 450) {
-            step = 3; // small screen → move 2 steps instead of 1
-        }else if (window.innerWidth < 640) {
-            step = 2; // medium
-        }
-         else if (window.innerWidth < 1024) {
+        if (window.innerWidth < 640) {
+            step = 2; // small screen → move 2 steps instead of 1
+        } else if (window.innerWidth < 1024) {
             step = 1; // medium
         } else {
             step = visibleCount; // large

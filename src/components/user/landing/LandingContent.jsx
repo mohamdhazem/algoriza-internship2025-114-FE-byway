@@ -74,6 +74,62 @@ export const LandingContent = () => {
         return () => observer.disconnect();
     }, []);
 
+
+    // Animate from right to left
+    const toLeftSectionsRef = useRef([]);
+
+    useEffect(() => {
+        const options = { threshold: 0.3 };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    if (window.innerWidth < 768) {
+                        // Mobile
+                        entry.target.classList.add("animate-fade-up");
+                    } else {
+                        // Desktop
+                        entry.target.classList.add("animate-fade-left");
+                    }
+                }
+            });
+        }, options);
+
+        toLeftSectionsRef.current.forEach((el) => {
+            if (el) observer.observe(el);
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
+
+    // Animate from left to right
+    const toRightSectionsRef = useRef([]);
+
+    useEffect(() => {
+        const options = { threshold: 0.3 };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    if (window.innerWidth < 768) {
+                        // Mobile
+                        entry.target.classList.add("animate-fade-up");
+                    } else {
+                        // Desktop
+                        entry.target.classList.add("animate-fade-right");
+                    }
+                }
+            });
+        }, options);
+
+        toRightSectionsRef.current.forEach((el) => {
+            if (el) observer.observe(el);
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <div className="py-20 font-inter">
             {/* main content */}
@@ -81,7 +137,7 @@ export const LandingContent = () => {
                 <div
                     ref={main1Ref}
                     className="flex flex-col justify-center text-start gap-5 opacity-0 translate-x-[-50px] transition-all duration-1200 ease-out">
-                    <h2 className="font-bold text-gray-900 text-2xl lg:text-[40px] md:text-3xl sm:text-2xl leading-snug w-full max-w-[480px]">
+                    <h2 className="font-bold text-gray-900 text-4xl lg:text-[40px] md:text-3xl sm:text-2xl leading-snug w-full max-w-[480px]">
                         Unlock Your Potential with Byway
                     </h2>
                     <p className="text-[16px] text-gray-700 max-w-[500px]">
@@ -100,20 +156,26 @@ export const LandingContent = () => {
 
                 <div
                     ref={main2Ref}
-                    className="flex flex-row relative flex-wrap md:flex-nowrap gap-1 sm:gap-6 md:gap-10 overflow-visible opacity-0 translate-x-[-50px] transition-all duration-1800 ease-out">
+                    className="flex flex-row relative flex-wrap md:flex-nowrap gap-1 sm:gap-6 md:gap-5 overflow-visible opacity-0 translate-x-[-50px] transition-all duration-1800 ease-out">
 
                     <div className="flex-1 flex flex-col justify-center items-center min-w-[140px] sm:min-w-[180px] md:min-w-[200px]">
-                        <div className="bg-[#F87171] rounded-full w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-54 lg:h-54 relative overflow-visible z-10">
+                        <div className="bg-[#F87171] rounded-full w-35 h-35 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-54 lg:h-54 relative overflow-visible z-10">
                             <img
                                 src="images/girl2.webp"
-                                className="absolute bottom-0 w-28 sm:w-36 md:w-44 lg:w-60 h-auto left-1/2 -translate-x-1/2 object-contain rounded-b-full"
+                                className="absolute bottom-0 w-35 sm:w-36 md:w-44 lg:w-60 h-[130%] left-1/2 -translate-x-1/2 object-contain rounded-b-full"
                                 alt=""
                             />
-                            <div className="absolute -bottom-3 -left-3 w-24 sm:w-32 md:w-40 lg:w-62 h-12 sm:h-16 md:h-20 lg:h-30 border-t-0 border-1 border-[#CBD5E1] rounded-b-full z-0"></div>
+                            <div
+                                className="absolute
+                                        -bottom-[8%] left-1/2 -translate-x-1/2
+                                        w-40 h-22 sm:w-42 sm:h-20 md:w-50 md:h-24 lg:w-60 lg:h-30
+                                        border-t-0 border border-[#CBD5E1]
+                                        rounded-b-[9999px] z-0">
+                            </div>
                         </div>
                         <img
                             src="images/Frame.png"
-                            className="absolute -left-[7%] top-16 sm:top-20 md:top-28 lg:top-35 w-10 sm:w-14 md:w-16 lg:w-20"
+                            className="absolute -left-4 top-24 sm:left-15 sm:top-20 md:top-[20%] md:-left-[5%] lg:-left-7 lg:top-35 w-18 md:w-22"
                             alt=""
                         />
                     </div>
@@ -122,24 +184,46 @@ export const LandingContent = () => {
                     {/* Second column */}
                     <div className="flex-1 flex flex-col justify-between items-start min-w-[140px] sm:min-w-[180px] md:min-w-[200px] mt-6 md:mt-0">
 
-                        <div className="relative bg-[#60A5FA] rounded-full w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-54 lg:h-54 z-10">
+                        <div className="relative bg-[#60A5FA] rounded-full w-35 h-35 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-54 lg:h-54 z-10">
                             <img
                                 src="images/boy.webp"
-                                className="absolute bottom-0 w-28 sm:w-36 md:w-44 lg:w-60 h-auto left-1/2 -translate-x-1/2 object-contain rounded-b-full z-10"
+                                className="absolute bottom-0 w-35 sm:w-36 md:w-44 lg:w-60 h-[120%] left-1/2 -translate-x-1/2 object-contain rounded-b-full z-10"
                                 alt=""
                             />
-                            <div className="absolute bottom-1 -right-2 w-12 sm:w-16 md:w-20 lg:w-30 h-28 sm:h-36 md:h-44 lg:h-62 border-l-0 border-1 border-[#CBD5E1] rounded-r-full z-0 -rotate-[20deg]"></div>
+                            <div
+                                className="absolute
+                                    bottom-9 left-[25%] lg:bottom-15 lg:left-1/5 sm:bottom-10 sm:left-[25%] md:bottom-12
+                                    w-40 h-22 sm:w-42 sm:h-21 md:w-50 md:h-24 lg:w-65 lg:h-32
+                                    border-t-0 border border-[#CBD5E1]
+                                    rounded-b-[9999px] z-0 -rotate-[105deg]">
+                            </div>
                         </div>
+                        <img
+                            src="images/Frame.png"
+                            className="absolute rotate-80 left-[43%] top-[5%] sm:left-[46%] sm:top-[7%] md:top-0 lg:left-[45%] lg:top-0 w-18 md:w-22"
+                            alt=""
+                        />
 
-                        <div className="relative bg-[#FACC15] rounded-full w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-54 lg:h-54 mt-4 md:mt-6">
+                        <span className="bg-gray-900 rounded-full w-[35px] h-[35px] flex items-center justify-center">
+                            <div className="w-[15px] h-[15px] bg-white rotate-45">
+
+                            </div>
+                        </span>
+
+                        <div className="relative bg-[#FACC15] rounded-full w-35 h-35 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-54 lg:h-54 mt-4 md:mt-0">
                             <img
                                 src="images/girl1.webp"
-                                className="absolute bottom-0 w-28 sm:w-36 md:w-44 lg:w-60 h-[95%] left-[50%] -translate-x-1/2 object-cover rounded-b-full z-10 scale-x-[-1]"
+                                className="absolute bottom-0 w-35 sm:w-36 md:w-44 lg:w-60 h-[95%] left-[50%] -translate-x-1/2 object-cover rounded-b-full z-10 scale-x-[-1]"
                                 alt=""
                             />
-                            <div className="absolute -bottom-6 sm:-bottom-8 md:-bottom-12 lg:-bottom-15 -right-1 w-12 sm:w-16 md:w-20 lg:w-30 h-28 sm:h-36 md:h-44 lg:h-62 border-l-0 border-1 border-[#CBD5E1] rounded-r-full z-0 rotate-[40deg]"></div>
-
-                            <span className="w-[120px] sm:w-[150px] md:w-[170px] h-auto min-h-[70px] sm:min-h-[80px] md:min-h-[100px] bg-white absolute -left-6 sm:-left-10 md:-left-15 bottom-3 sm:bottom-4 md:bottom-5 rounded-xl drop-shadow-lg flex flex-col gap-1.5 sm:gap-2 pt-2 px-1.5 z-20">
+                            <div
+                                className="absolute
+                                    bottom-0 left-[17%] lg:left-1/6 md:left-[15%]
+                                    w-40 h-20 sm:w-40 sm:h-22 md:w-50 md:h-28 lg:w-60 lg:h-30
+                                    border-t-0 border border-[#CBD5E1]
+                                    rounded-b-[9999px] z-0 -rotate-[45deg]">
+                            </div>
+                            <span className="w-[110px] sm:w-[150px] md:w-[170px] h-auto min-h-[70px] sm:min-h-[80px] md:min-h-[100px] bg-white absolute -left-15 sm:-left-10 md:-left-20 bottom-3 sm:bottom-4 md:bottom-5 rounded-xl drop-shadow-lg flex flex-col gap-1.5 sm:gap-2 pt-2 px-1.5 z-20">
                                 <div className="flex flex-row -space-x-2 sm:-space-x-3">
                                     <img src="images/community5.png" className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
                                     <img src="images/community4.png" className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
@@ -157,38 +241,48 @@ export const LandingContent = () => {
                 </div>
             </div>
 
-
             {/* statistics */}
             <StatsSection />
 
             {/* Top categories */}
-            <div className="px-5 md:px-10 lg:px-20 gap-10">
-                <div className="flex justify-between items-center">
-                    <h2 className="font-semibold text-[18px] sm:text-xl md:text-2xl">Top Categories</h2>
-                    <div className="flex justify-between gap-5 w-30">
-                        <button className="flex-1 py-1 px-3.5 bg-[#94A3B8] text-white rounded-lg cursor-pointer">
+            <div
+                ref={(el) => (toRightSectionsRef.current[0] = el)}
+                className="px-5 md:px-10 lg:px-20 gap-10 opacity-0 translate-y-10 md:-translate-x-10 transition-all duration-800 ease-out">
+                {/* Header */}
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <h2 className="font-semibold text-lg sm:text-xl md:text-2xl">Top Categories</h2>
+                    <div className="hidden md:flex gap-3 sm:gap-5">
+                        <button className="py-1 px-3.5 bg-[#94A3B8] text-white rounded-lg cursor-pointer">
                             <ChevronLeft />
                         </button>
-                        <button className="flex-1 py-1 px-3.5 bg-[#94A3B8] text-white rounded-lg cursor-pointer">
+                        <button className="py-1 px-3.5 bg-[#94A3B8] text-white rounded-lg cursor-pointer">
                             <ChevronRight />
                         </button>
                     </div>
                 </div>
-                <div className="flex justify-between gap-10 py-7">
+
+                {/* Categories */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-7">
                     {topCategories.map((cat, index) => (
-                        <div key={index} className="flex-1 flex flex-col items-center py-7 gap-1.5 border-gray-200 rounded-2xl shadow-blue-soft">
-                            <div className="flex justify-center items-center w-25 h-25 bg-[#E0F2FE] rounded-full">
-                                <img src={cat.imageUrl} alt="" />
+                        <div
+                            key={index}
+                            className="flex flex-col items-center py-6 px-4 gap-2 border border-gray-200 rounded-2xl shadow-blue-soft text-center"
+                        >
+                            <div className="flex justify-center items-center w-20 h-20 sm:w-24 sm:h-24 md:w-25 md:h-25 bg-[#E0F2FE] rounded-full">
+                                <img src={cat.imageUrl} alt={cat.name} className="w-10" />
                             </div>
-                            <h4 className="text-xl font-semibold pt-1">{cat.name}</h4>
-                            <p className="text-[16px] pt-1.5">{cat.coursesNumber} Courses</p>
+                            <h4 className="text-base sm:text-lg md:text-xl font-semibold pt-1">{cat.name}</h4>
+                            <p className="text-sm sm:text-[15px] md:text-[16px] pt-1.5">{cat.coursesNumber} Courses</p>
                         </div>
                     ))}
                 </div>
             </div>
 
+
             {/* Top course */}
-            <div className="px-5 md:px-10 lg:px-20 gap-10 my-10">
+            <div
+                ref={(el) => (toLeftSectionsRef.current[0] = el)}
+                className="px-5 md:px-10 lg:px-20 gap-10 my-10 opacity-0 translate-y-10 md:translate-x-10 transition-all duration-800 ease-out">
                 <div className="flex justify-between items-center">
                     <h2 className="font-semibold text-[18px] sm:text-xl md:text-2xl">Top Courses</h2>
                     <Link
@@ -197,7 +291,7 @@ export const LandingContent = () => {
                         See All
                     </Link>
                 </div>
-                <div className="grid grid-cols-4 gap-4 py-7 overflow-x-hidden">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-7 overflow-x-hidden">
                     {topCourses.map((c, index) => (
                         <CourseCard key={index} course={c} role="user" />
                     ))}
@@ -205,17 +299,27 @@ export const LandingContent = () => {
             </div>
 
             {/* Top instructors */}
-            <TopInstructorsSlider topInstructors={topInstructors} />
+            <div
+                ref={(el) => (toRightSectionsRef.current[1] = el)}
+                className=" opacity-0 translate-y-10 md:-translate-x-10 transition-all duration-800 ease-out"
+            >
+                <TopInstructorsSlider topInstructors={topInstructors} />
+            </div>
 
             {/* Reviews */}
-            <CustomerReviews />
+            <div
+                ref={(el) => (toLeftSectionsRef.current[1] = el)}
+                className=" opacity-0 translate-y-10 md:translate-x-10 transition-all duration-800 ease-out"
+            >
+                <CustomerReviews />
+            </div>
 
             {/* our services */}
             <div className="px-6 md:px-30 py-10">
                 {/* Section 1 */}
                 <div
                     ref={section1Ref}
-                    className="flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-20 opacity-0 translate-y-10 transition-all duration-700 ease-out"
+                    className="flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-20 opacity-0 translate-y-10 transition-all duration-800 ease-out"
                 >
                     <div className="flex justify-center items-start">
                         <img
@@ -270,10 +374,6 @@ export const LandingContent = () => {
                     </div>
                 </div>
             </div>
-
-
-
-
         </div>
     )
 }

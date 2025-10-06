@@ -64,6 +64,14 @@
     @apply opacity-100 translate-y-0;
   }
 
+  .animate-fade-left {
+    @apply opacity-100 translate-x-0;
+  }
+
+  .animate-fade-right {
+    @apply opacity-100 translate-x-0;
+  }
+
   input:-webkit-autofill {
     /* Tailwind's blue-600 */
     -webkit-box-shadow: 0 0 0px 1000px white inset;
