@@ -8,7 +8,7 @@ export const NavBar = () => {
                 <Link
                     className="flex items-center pr-17"
                     to="/adminlogin">
-                    <img src="icons/37c5de785384c3fafe195a0ef1d99825e88d3fdf.png"
+                    <img src={`${import.meta.env.BASE_URL}icons/37c5de785384c3fafe195a0ef1d99825e88d3fdf.png`}
                         alt=""
                         className="h-10 min-w-10" />
                     <h3 className="text-gray-700 text-lg">Byway</h3>

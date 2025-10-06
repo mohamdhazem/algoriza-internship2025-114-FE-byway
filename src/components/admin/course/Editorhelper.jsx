@@ -105,7 +105,7 @@ export const Editorhelper = ({ comingValue, type, onchange, disabled = false }) 
                             onClick={() => alert("Drawing tool placeholder")}
                             className="px-2 py-1 hover:bg-gray-100 rounded"
                         >
-                            <img src="/icons/texteditor/Shape.svg" alt="Draw" />
+                            <img src={`${import.meta.env.BASE_URL}icons/texteditor/Shape.svg`} alt="Draw" />
                         </button>
 
                         {/* Color */}
@@ -116,7 +116,7 @@ export const Editorhelper = ({ comingValue, type, onchange, disabled = false }) 
                                 onClick={() => setShowColorOptions(!showColorOptions)}
                                 className="px-2 py-1 hover:bg-gray-100 rounded"
                             >
-                                <img src="/icons/texteditor/color.svg" alt="Color" />
+                                <img src={`${import.meta.env.BASE_URL}icons/texteditor/color.svg`} alt="Color" />
                             </button>
                             {showColorOptions && (
                                 <div className="absolute top-full left-0 mt-1 flex gap-1 bg-white border border-gray-200 p-1 rounded shadow-md z-10">
@@ -141,7 +141,7 @@ export const Editorhelper = ({ comingValue, type, onchange, disabled = false }) 
                                 onClick={() => setShowSizeOptions(!showSizeOptions)}
                                 className="px-2 py-1 hover:bg-gray-100 rounded"
                             >
-                                <img src="/icons/texteditor/doubleA.svg" alt="Size" />
+                                <img src={`${import.meta.env.BASE_URL}icons/texteditor/doubleA.svg`} alt="Size" />
                             </button>
                             {showSizeOptions && (
                                 <div className="absolute top-full left-0 mt-1 flex flex-col bg-white border border-gray-300 p-1 rounded shadow-md z-10">
@@ -170,7 +170,7 @@ export const Editorhelper = ({ comingValue, type, onchange, disabled = false }) 
                             onClick={() => toggleFormat("list", "bullet")}
                             className="px-2 py-1 hover:bg-gray-100 rounded"
                         >
-                            <img src="/icons/texteditor/unorderedList.svg" alt="Unordered List" />
+                            <img src={`${import.meta.env.BASE_URL}icons/texteditor/unorderedList.svg`} alt="Unordered List" />
                         </button>
                         <button
                             type="button"
@@ -178,7 +178,7 @@ export const Editorhelper = ({ comingValue, type, onchange, disabled = false }) 
                             onClick={() => toggleFormat("list", "ordered")}
                             className="px-2 py-1 hover:bg-gray-100 rounded"
                         >
-                            <img src="/icons/texteditor/orderedList.svg" alt="Ordered List" />
+                            <img src={`${import.meta.env.BASE_URL}icons/texteditor/orderedList.svg`} alt="Ordered List" />
                         </button>
                     </div>
 
@@ -204,7 +204,7 @@ export const Editorhelper = ({ comingValue, type, onchange, disabled = false }) 
                             onClick={insertDate}
                             className="px-2 py-1 hover:bg-gray-100 rounded"
                         >
-                            <img src="/icons/texteditor/calender.svg" alt="Calendar" />
+                            <img src={`${import.meta.env.BASE_URL}icons/texteditor/calender.svg`} alt="Calendar" />
                         </button>
 
                         <button
@@ -213,7 +213,7 @@ export const Editorhelper = ({ comingValue, type, onchange, disabled = false }) 
                             onClick={() => toggleFormat("blockquote", true)}
                             className="px-2 py-1 hover:bg-gray-100 rounded"
                         >
-                            <img src="/icons/texteditor/qoute.svg" alt="Quote" />
+                            <img src={`${import.meta.env.BASE_URL}icons/texteditor/qoute.svg`} alt="Quote" />
                         </button>
                     </div>
                 </div>

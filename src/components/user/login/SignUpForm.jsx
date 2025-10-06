@@ -64,7 +64,7 @@ export const Signupform = () => {
         <div className="grid grid-cols-7 ">
             <div className="col-span-3 h-screen">
                 <img
-                    src="/images/bg2.jpg"
+                    src={`${import.meta.env.BASE_URL}images/bg2.jpg`}
                     alt="Background"
                     className="h-full object-cover"
                 />
@@ -189,17 +189,17 @@ export const Signupform = () => {
                 {/* Social Login Buttons */}
                 <div className="flex gap-3">
                     <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border rounded-lg border-gray-200 hover:bg-gray-50">
-                        <img src="icons/facebook.png" alt="Facebook" className="w-5 h-5" />
+                        <img src={`${import.meta.env.BASE_URL}icons/facebook.png`} alt="Facebook" className="w-5 h-5" />
                         <span className="text-sm text-blue-600">Facebook</span>
                     </button>
 
                     <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border rounded-lg border-gray-200 hover:bg-gray-50">
-                        <img src="icons/google.png" alt="Google" className="w-5 h-5" />
+                        <img src={`${import.meta.env.BASE_URL}icons/google.png`} alt="Google" className="w-5 h-5" />
                         <span className="text-sm text-red-400 ">Google</span>
                     </button>
 
                     <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border rounded-lg border-gray-200 hover:bg-gray-50">
-                        <img src="icons/microsoft.png" alt="Microsoft" className="w-5 h-5" />
+                        <img src={`${import.meta.env.BASE_URL}icons/microsoft.png`} alt="Microsoft" className="w-5 h-5" />
                         <span className="text-sm ">Microsoft</span>
                     </button>
                 </div>

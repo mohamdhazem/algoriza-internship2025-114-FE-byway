@@ -157,7 +157,7 @@ export const PaymentDetails = () => {
                                 <input type="radio" name="payment" className="w-6 h-6 accent-blue-600" checked readOnly />
                                 Credit/Debit Card
                             </label>
-                            <img src="/icons/payment/visa.png" alt="Card Icon" className="w-[72.5px] h-[28.5px]" />
+                            <img src={`${import.meta.env.BASE_URL}icons/payment/visa.png`} alt="Card Icon" className="w-[72.5px] h-[28.5px]" />
                         </div>
 
                         <div className="flex flex-col gap-1 text-start">
@@ -227,7 +227,7 @@ export const PaymentDetails = () => {
                             <input type="radio" name="payment" className="w-6 h-6" disabled />
                             PayPal
                         </label>
-                        <img src="/icons/payment/paypal.png" alt="Card Icon" className="w-[72.5px] h-[28.5px]" />
+                        <img src={`${import.meta.env.BASE_URL}icons/payment/paypal.png`} alt="Card Icon" className="w-[72.5px] h-[28.5px]" />
                     </div>
                 </div>
                 {/* courses */}
@@ -245,7 +245,7 @@ export const PaymentDetails = () => {
                         }
                     </div>
                     <div className="flex justify-start items-center gap-3 border border-gray-200 rounded-lg px-4 py-4 bg-[#F8FAFC]">
-                        <img src="icons/payment/discount.svg" className="" alt="" />
+                        <img src={`${import.meta.env.BASE_URL}icons/payment/discount.svg`} className="" alt="" />
                         <p className="text-sm">APPLY COUPON CODE</p>
                     </div>
                     {/* prices */}

@@ -120,14 +120,16 @@ export const AddInstructor = ({ setShowForm }) => {
                 {/* Header */}
                 <div className="flex justify-between items-center">
                     <h2 className="text-xl font-semibold">Add Instructor</h2>
-                    <button onClick={() => setShowForm(false)}>
+                    <button 
+                        className="cursor-pointer"
+                        onClick={() => setShowForm(false)}>
                         <XIcon />
                     </button>
                 </div>
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                    {/* Avatar Upload */}
+                    {/* Upload image*/}
                     <div className="flex justify-center items-center w-20 h-20 bg-[#F2F2F2] rounded-full py-5 my-6 relative">
                         {/* Hidden input */}
                         <input

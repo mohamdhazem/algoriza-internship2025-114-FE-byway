@@ -46,7 +46,7 @@ export const CourseCard = ({ course, role = "admin" }) => {
                     {[1, 2, 3, 4, 5].map((num) => (
                         <img
                             key={num}
-                            src={num <= Math.round(course.rate) ? "/icons/StarFilled.svg" : "/icons/StarEmpty.svg"}
+                            src={num <= Math.round(course.rate) ? `${import.meta.env.BASE_URL}icons/StarFilled.svg` : `${import.meta.env.BASE_URL}icons/StarEmpty.svg`}
                             className="w-5 h-5"
                             alt="star"
                         />

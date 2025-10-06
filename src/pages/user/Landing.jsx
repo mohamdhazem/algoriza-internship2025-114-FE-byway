@@ -5,7 +5,7 @@ import { NavBar } from "../../components/user/shared/NavBar"
 export const Landing = () => {
 
     return (
-        <div className="">
+        <div className="overflow-x-hidden">
             <NavBar></NavBar>
             <hr className="text-gray-200" />
             <main>

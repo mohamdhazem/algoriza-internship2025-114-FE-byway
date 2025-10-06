@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-import starEmpty from "/icons/StarEmpty.svg";
-import starFilled from "/icons/StarFilled.svg";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-export default function RateFilter({ value , onChange }) {
+export default function RateFilter({ value, onChange }) {
     const [open, setOpen] = useState(true);
     const [hover, setHover] = useState(0);
 
     const clickHandler = (starValue) => {
         setHover(starValue);
-        onChange && onChange(starValue); 
+        onChange && onChange(starValue);
     };
 
     return (
@@ -37,7 +35,7 @@ export default function RateFilter({ value , onChange }) {
                             return (
                                 <img
                                     key={i}
-                                    src={isActive ? starFilled : starEmpty}
+                                    src={isActive? `${import.meta.env.BASE_URL}icons/StarFilled.svg` : `${import.meta.env.BASE_URL}icons/StarEmpty.svg`}
                                     alt="star"
                                     onClick={() => clickHandler(starValue)}
                                     onMouseEnter={() => setHover(starValue)}

@@ -121,8 +121,10 @@ export const TopInstructorsSlider = ({ topInstructors }) => {
                     {topInstructors.map((ins, index) => (
                         <div
                             key={index}
-                            className={`flex-[0_0_calc((100%/${visibleCount})-2%)] flex flex-col items-center rounded-xl shadow-blue-soft w-[50%] ${visibleCount <= 2 ? "scroll-snap-start" : ""}`}
+                            style={{ flex: `0 0 calc(${100 / visibleCount}% - 2%)` }}
+                            className={`flex flex-col items-center rounded-xl shadow-blue-soft ${visibleCount <= 2 ? "snap-start" : ""}`}
                         >
+
                             <div className="w-full px-4 pt-4">
                                 <img
                                     src={ins.imageUrl}
@@ -139,7 +141,7 @@ export const TopInstructorsSlider = ({ topInstructors }) => {
                             </div>
                             <div className="flex-1 flex justify-between items-center gap-16 px-4 py-3.5">
                                 <div className="flex justify-between items-center gap-1">
-                                    <img src="icons/StarFilled.svg" alt="" />
+                                    <img src={`${import.meta.env.BASE_URL}icons/StarFilled.svg`} alt="" />
                                     <p className="text-xs font-semibold text-[#0F172A]">{ins.rate}</p>
                                 </div>
                                 <p className="text-xs font-semibold text-[#334155]">

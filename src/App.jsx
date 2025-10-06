@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import { UserLogin } from './pages/user/UserLogin'
 import { AdminLogin } from './pages/admin/AdminLogin'
 import { Dashboard } from './pages/admin/Dashboard'
@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename='/algoriza-internship2025-114-FE-byway'>
         <ScrollToTop />
         <Routes>
           <Route path="/AdminLogin" element={<AdminLogin></AdminLogin>}></Route>

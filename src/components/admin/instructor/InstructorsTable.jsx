@@ -85,7 +85,7 @@ export const InstructorsTable = () => {
                     <button
                         type="button"
                         onClick={handleAdd}
-                        className="flex items-center justify-center gap-1 text-white text-sm font-medium bg-gray-950 px-5 py-2 rounded-lg hover:bg-gray-800"
+                        className="flex items-center justify-center gap-1 text-white text-sm font-medium bg-gray-950 px-5 py-2 rounded-lg hover:bg-gray-800 cursor-pointer"
                     >
                         Add Instructor
                     </button>
@@ -155,19 +155,19 @@ export const InstructorsTable = () => {
                                         <div className="flex items-center justify-start gap-7">
                                             <button
                                                 onClick={() => handleView(inst.id)}
-                                                className="text-[#5879DC] hover:text-blue-500"
+                                                className="text-[#5879DC] hover:text-blue-500 cursor-pointer"
                                             >
                                                 <Eye className="w-5 h-5" />
                                             </button>
                                             <button
                                                 onClick={() => handleEdit(inst.id)}
-                                                className="text-[#5879DC] hover:text-blue-500"
+                                                className="text-[#5879DC] hover:text-blue-500 cursor-pointer"
                                             >
                                                 <PencilLine className="w-5 h-5" />
                                             </button>
                                             <button
                                                 onClick={() => handleDelete(inst)}
-                                                className="text-[#EB5757] hover:text-red-700"
+                                                className="text-[#EB5757] hover:text-red-700 cursor-pointer"
                                             >
                                                 <Trash className="w-5 h-5" />
                                             </button>

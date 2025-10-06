@@ -35,6 +35,7 @@ export const CoursesSection = () => {
 
             setCourses(res.data.data);
             setCount(res.data.count);
+            console.log(count)
         } catch (err) {
             console.error("Error fetching Courses:", err);
         }

@@ -124,7 +124,7 @@ export const CustomerReviews = () => {
                             {/* Quote Icon */}
                             <div className="flex justify-start">
                                 <img
-                                    src="icons/reviewcomma.svg"
+                                    src={`${import.meta.env.BASE_URL}icons/reviewcomma.svg`}
                                     alt=""
                                     className="w-6 md:w-8"
                                 />

@@ -125,6 +125,10 @@ export const LoginForm = ({ role }) => {
                     >
                         Sign In <ArrowRightIcon size={22}></ArrowRightIcon>
                     </button>
+
+                    {error && (
+                        <p className="text-red-500 text-sm mt-2">{error}</p>
+                    )}
                 </form>
 
                 {/* Divider */}
@@ -137,21 +141,21 @@ export const LoginForm = ({ role }) => {
                 {/* Social Login Buttons */}
                 <div className="flex gap-3 mt-4">
                     <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border rounded-lg border-gray-200 hover:bg-gray-50 cursor-pointer">
-                        <img src="icons/facebook.png" alt="Facebook" className="w-5 h-5" />
+                        <img src={`${import.meta.env.BASE_URL}icons/facebook.png`} alt="Facebook" className="w-5 h-5" />
                         <span className="text-sm text-blue-600">Facebook</span>
                     </button>
 
                     <button
                         onClick={googleHandler}
                         className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border rounded-lg border-gray-200 hover:bg-gray-50 cursor-pointer">
-                        <img src="icons/google.png" alt="Google" className="w-5 h-5" />
+                        <img src={`${import.meta.env.BASE_URL}icons/google.png`} alt="Google" className="w-5 h-5" />
                         <span className="text-sm text-red-400 ">Google</span>
                     </button>
 
-                    <button 
-                    onClick={microsoftHandler}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border rounded-lg border-gray-200 hover:bg-gray-50 cursor-pointer">
-                        <img src="icons/microsoft.png" alt="Microsoft" className="w-5 h-5" />
+                    <button
+                        onClick={microsoftHandler}
+                        className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border rounded-lg border-gray-200 hover:bg-gray-50 cursor-pointer">
+                        <img src={`${import.meta.env.BASE_URL}icons/microsoft.png`} alt="Microsoft" className="w-5 h-5" />
                         <span className="text-sm ">Microsoft</span>
                     </button>
                 </div>
@@ -160,7 +164,7 @@ export const LoginForm = ({ role }) => {
             </div>
             <div className="col-span-3 h-screen">
                 <img
-                    src="/images/bg1.jpg"
+                    src={`${import.meta.env.BASE_URL}images/bg1.jpg`}
                     alt="Background"
                     className="h-full object-cover"
                 />

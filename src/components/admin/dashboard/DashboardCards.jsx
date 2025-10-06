@@ -10,7 +10,7 @@ export const DashboardCards = ({instructorsNumber, categoriesNumber, coursesNumb
                 <div className="flex flex-row items-center justify-between gap-10 pt-4 px-5">
                     <h2 className="font-medium text-black">{instructorsNumber}</h2>
                     <div className="flex items-center justify-center rounded-xl bg-blue-50 w-10 h-10">
-                        <img src="icons/usericon.png" alt="" />
+                        <img src={`${import.meta.env.BASE_URL}icons/usericon.png`} alt="" />
                     </div>
                 </div>
                 <p className="text-start px-5 pb-4 pt-1 font-semibold text-black">Instructors</p>
@@ -19,7 +19,7 @@ export const DashboardCards = ({instructorsNumber, categoriesNumber, coursesNumb
                 <div className="flex flex-row items-center justify-between gap-10 pt-4 px-5">
                     <h2 className="font-medium text-black">{categoriesNumber}</h2>
                     <div className="flex items-center justify-center rounded-xl bg-blue-50 w-10 h-10">
-                        <img src="icons/fileIcon.png" alt="" />
+                        <img src={`${import.meta.env.BASE_URL}icons/fileIcon.png`} alt="" />
                     </div>
                 </div>
                 <p className="text-start px-5 pb-4 pt-1 font-semibold text-black">Categories</p>
@@ -28,7 +28,7 @@ export const DashboardCards = ({instructorsNumber, categoriesNumber, coursesNumb
                 <div className="flex flex-row items-center justify-between gap-10 pt-4 px-5">
                     <h2 className="font-medium text-black">{coursesNumber}</h2>
                     <div className="flex items-center justify-center rounded-xl bg-blue-50 w-10 h-10">
-                        <img src="icons/folderIcon.png" alt="" />
+                        <img src={`${import.meta.env.BASE_URL}icons/folderIcon.png`} alt="" />
                     </div>
                 </div>
                 <p className="text-start px-5 pb-4 pt-1 font-semibold text-black">Courses</p>

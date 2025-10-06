@@ -59,7 +59,7 @@ export default function WalletCard() {
             <div className="flex justify-between items-center">
                 <h3 className="text-[#202637] text-lg font-semibold">Wallet</h3>
                 <span className="flex justify-center gap-2 bg-gray-100 text-[#A3AED0] text-sm px-3 py-2 rounded-lg">
-                    <img src="icons/calenderVector.png" alt="" /> This month
+                    <img src={`${import.meta.env.BASE_URL}icons/calenderVector.png`} alt="" /> This month
                 </span>
             </div>
 
@@ -75,7 +75,7 @@ export default function WalletCard() {
                             Wallet Balance
                             <span className="flex items-center text-[#05CD99] text-sm font-semibold">
                                 <span className="pr-0.5">
-                                    <img src="icons/upperVector.png" alt="" />
+                                    <img src={`${import.meta.env.BASE_URL}icons/upperVector.png`} alt="" />
                                 </span>+2.45%
                             </span>
                         </p>
@@ -83,7 +83,7 @@ export default function WalletCard() {
 
                     <div className="flex items-center gap-2 text-[#05CD99] font-medium my-4">
                         <span className="w-4 h-4 bg-[#05CD99] rounded-full flex items-center justify-center">
-                            <img src="icons/trueVector.png" alt="" className="w-2 h-2 text-white" />
+                            <img src={`${import.meta.env.BASE_URL}icons/trueVector.png`} alt="" className="w-2 h-2 text-white" />
                         </span>
                         On your account
                     </div>

@@ -25,6 +25,7 @@ export const AuthCallback = () => {
             localStorage.setItem("token", token);
             serRefreshUserAtom();
             refreshCartCount();
+            console.log("token:",token);
             navigate("/Landing");
         } else {
             navigate("/userlogin");

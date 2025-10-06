@@ -39,14 +39,14 @@ export default function TextArea({ value, type, onchange }) {
                     <button
                         className="px-1 py-1 hover:bg-gray-100 rounded"
                     >
-                        <img src="/icons/texteditor/Shape.svg" alt="Draw" />
+                        <img src={`${import.meta.env.BASE_URL}icons/texteditor/Shape.svg`} alt="Draw" />
                     </button>
 
                     <div className="relative">
                         <button
                             className="px-2 py-1 hover:bg-gray-100 rounded"
                         >
-                            <img src="/icons/texteditor/color.svg" alt="Color" />
+                            <img src={`${import.meta.env.BASE_URL}icons/texteditor/color.svg`} alt="Color" />
                         </button>
 
                     </div>
@@ -55,7 +55,7 @@ export default function TextArea({ value, type, onchange }) {
                         <button
                             className="px-2 py-1 hover:bg-gray-100 rounded"
                         >
-                            <img src="/icons/texteditor/doubleA.svg" alt="Size" />
+                            <img src={`${import.meta.env.BASE_URL}icons/texteditor/doubleA.svg`} alt="Size" />
                         </button>
 
                     </div>
@@ -67,12 +67,12 @@ export default function TextArea({ value, type, onchange }) {
                     <button
                         className="px-2 py-1 hover:bg-gray-100 rounded"
                     >
-                        <img src="/icons/texteditor/unorderedList.svg" alt="Unordered List" />
+                        <img src={`${import.meta.env.BASE_URL}icons/texteditor/unorderedList.svg`} alt="Unordered List" />
                     </button>
                     <button
                         className="px-2 py-1 hover:bg-gray-100 rounded"
                     >
-                        <img src="/icons/texteditor/orderedList.svg" alt="Ordered List" />
+                        <img src={`${import.meta.env.BASE_URL}icons/texteditor/orderedList.svg`} alt="Ordered List" />
                     </button>
                 </div>
 
@@ -88,13 +88,13 @@ export default function TextArea({ value, type, onchange }) {
                     <button
                         className="px-2 py-1 hover:bg-gray-100 rounded"
                     >
-                        <img src="/icons/texteditor/calender.svg" alt="Calendar" />
+                        <img src={`${import.meta.env.BASE_URL}icons/texteditor/calender.svg`} alt="Calendar" />
                     </button>
 
                     <button
                         className="px-2 py-1 hover:bg-gray-100 rounded"
                     >
-                        <img src="/icons/texteditor/qoute.svg" alt="Quote" />
+                        <img src={`${import.meta.env.BASE_URL}icons/texteditor/qoute.svg`} alt="Quote" />
                     </button>
                 </div>
             </div>

@@ -6,7 +6,7 @@ export const Pagination = ({ pageIndex, totalPages, onPageChange }) => {
       <div className="flex border border-[#E2E8F0] text-[#334155] text-xs font-inter font-semibold rounded-sm overflow-hidden">
         {/* Previous */}
         <button
-          className="px-3 py-2 text-sm border-r border-[#E2E8F0] hover:bg-gray-100 disabled:opacity-50"
+          className="px-3 py-2 text-sm border-r border-[#E2E8F0] hover:bg-gray-100 disabled:opacity-50 cursor-pointer"
           onClick={() => onPageChange(Math.max(pageIndex - 1, 1))}
           disabled={pageIndex === 1}
         >
@@ -18,8 +18,8 @@ export const Pagination = ({ pageIndex, totalPages, onPageChange }) => {
           <button
             key={page}
             onClick={() => onPageChange(page)}
-            className={`px-3 py-2 text-sm border-r border-[#E2E8F0] hover:bg-gray-100 ${
-              page === pageIndex ? "bg-gray-200" : ""
+            className={`px-3 py-2 text-sm border-r border-[#E2E8F0] cursor-default ${
+              page === pageIndex ? "bg-gray-200 " : "cursor-pointer hover:bg-gray-100"
             }`}
           >
             {page}
@@ -28,7 +28,7 @@ export const Pagination = ({ pageIndex, totalPages, onPageChange }) => {
 
         {/* Next */}
         <button
-          className="px-3 py-2 text-sm hover:bg-gray-100 disabled:opacity-50"
+          className="px-3 py-2 text-sm hover:bg-gray-100 disabled:opacity-50 cursor-pointer"
           onClick={() => onPageChange(Math.min(pageIndex + 1, totalPages))}
           disabled={pageIndex === totalPages}
         >

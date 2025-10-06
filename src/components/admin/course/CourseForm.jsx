@@ -285,7 +285,7 @@ export const CourseForm = ({ mode, courseId }) => {
                                 ) : (
                                     // Default placeholder
                                     <>
-                                        <img src="/icons/uploadImageIcon.svg" className="w-5 h-5" alt="" />
+                                        <img src={`${import.meta.env.BASE_URL}/icons/uploadImageIcon.svg`} className="w-5 h-5" alt="" />
                                         <span className="text-[#737F8E] text-sm">Upload Image</span>
                                     </>
                                 )}
@@ -304,7 +304,7 @@ export const CourseForm = ({ mode, courseId }) => {
                                     className={`mt-3 w-[150px] h-[45px] px-2.5 border rounded-lg text-[#5879DC] font-medium flex justify-center items-center gap-2 
                                         ${inputMode ? "" : "cursor-pointer"}`}
                                 >
-                                    <img src="/icons/uploadImage.svg" className="w-4 h-4" alt="" />
+                                    <img src={`${import.meta.env.BASE_URL}icons/uploadImage.svg`} className="w-4 h-4" alt="" />
                                     <p className="text-sm text-[#5879DC]">Upload Image</p>
                                 </button>
                             </div>
@@ -523,7 +523,7 @@ export const CourseForm = ({ mode, courseId }) => {
                                             onClick={() => removeContentItem(index)}
                                             className=" bg-[#FDEEEE] text-[#EB5757] font-bold py-3 px-3.5 rounded-lg cursor-pointer"
                                         >
-                                            <img src="/icons/texteditor/trash.svg" className="w-4.5 h-4.5" alt="" />
+                                            <img src={`${import.meta.env.BASE_URL}icons/texteditor/trash.svg`} className="w-4.5 h-4.5" alt="" />
                                         </button>
                                     </div>
                                 )}
@@ -537,7 +537,7 @@ export const CourseForm = ({ mode, courseId }) => {
                                 className="mt-2 px-4 py-2 flex items-center justify-center gap-2 rounded-lg text-[#202637] font-semibold bg-[#ECEEF0] cursor-pointer"
                             >
                                 <h3 className="">Add Another Content</h3>
-                                <img src="/icons/texteditor/addContent.svg" className="w-3.5 h-3.5" alt="" />
+                                <img src={`${import.meta.env.BASE_URL}icons/texteditor/addContent.svg`} className="w-3.5 h-3.5" alt="" />
                             </button>
                         )}
                     </div>

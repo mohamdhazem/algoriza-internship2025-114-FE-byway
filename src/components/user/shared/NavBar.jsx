@@ -31,7 +31,7 @@ export const NavBar = () => {
         >
             <Link to="/Landing" className="flex items-center sm:pr-6 md:pr-17">
                 <img
-                    src="/icons/37c5de785384c3fafe195a0ef1d99825e88d3fdf.png"
+                    src= {`${import.meta.env.BASE_URL}/icons/37c5de785384c3fafe195a0ef1d99825e88d3fdf.png`}
                     alt="logo"
                     className="h-8 w-full md:h-10 md:w-10"
                 />
@@ -60,7 +60,7 @@ export const NavBar = () => {
                     <div className="flex justify-between items-center gap-3 md:gap-4.5 pt-1.5">
                         {/* Cart */}
                         <Link to={"/cart"} className="relative w-6 h-6">
-                            <img src="/icons/nav/basket.svg" className="w-5 h-5" alt="" />
+                            <img src={`${import.meta.env.BASE_URL}/icons/nav/basket.svg`} className="w-5 h-5" alt="" />
                             {cartCoursesCount > 0 && (
                                 <span className="absolute -top-[4px] -right-[1px] w-[14px] h-[14px] bg-red-600 border border-white rounded-full flex justify-center items-center">
                                     <p className="text-[9px] text-white font-semibold">
@@ -72,14 +72,14 @@ export const NavBar = () => {
 
                         <div className="w-6 h-6">
                             <img
-                                src="/icons/nav/useralert.svg"
+                                src={`${import.meta.env.BASE_URL}/icons/nav/useralert.svg`}
                                 className="w-[17.5px] h-[20px]"
                                 alt=""
                             />
                         </div>
 
                         <div onClick={handleLogout} className="w-6 h-6 cursor-pointer">
-                            <img src="/icons/nav/logout.svg" alt="" />
+                            <img src={`${import.meta.env.BASE_URL}/icons/nav/logout.svg`} alt="" />
                         </div>
                     </div>
 

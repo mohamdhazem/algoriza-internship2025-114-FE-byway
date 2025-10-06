@@ -22,7 +22,7 @@ export const DashboardNav = () => {
                 <Link
                     className="flex items-center pt-3 pl-3"
                     to="/adminlogin">
-                    <img src="/icons/37c5de785384c3fafe195a0ef1d99825e88d3fdf.png"
+                    <img src={`${import.meta.env.BASE_URL}icons/37c5de785384c3fafe195a0ef1d99825e88d3fdf.png`}
                         alt=""
                         className="h-10 min-w-10" />
                     <p>Byway</p>
@@ -38,7 +38,7 @@ export const DashboardNav = () => {
                             : "flex items-center gap-2.5 p-3 transition-colors duration-500 ease-in-out"
                     }
                 >
-                    <img src={clickedPage === "dashboard" ? "/icons/homeBlue.svg" : "/icons/home.svg"} className="w-4.5 h-5" alt="" />
+                    <img src={clickedPage === "dashboard" ? `${import.meta.env.BASE_URL}icons/homeBlue.svg` : `${import.meta.env.BASE_URL}/icons/home.svg`} className="w-4.5 h-5" alt="" />
                     <p className="text-sm">Dashboard</p>
                 </Link>
                 <Link
@@ -49,7 +49,7 @@ export const DashboardNav = () => {
                         : "flex items-center gap-2.5 p-3 transition-colors duration-500 ease-in-out"
                     }
                 >
-                    <img src={clickedPage === "instructor" ? "/icons/userBlue.svg" : "/icons/user.svg"} className="w-4.5 h-5" alt="" />
+                    <img src={clickedPage === "instructor" ? `${import.meta.env.BASE_URL}icons/userBlue.svg` : `${import.meta.env.BASE_URL}/icons/user.svg`} className="w-4.5 h-5" alt="" />
                     <p className="text-sm">Instructors</p>
                 </Link>
                 <Link
@@ -60,14 +60,14 @@ export const DashboardNav = () => {
                         : "flex items-center gap-2.5 p-3 transition-colors duration-500 ease-in-out"
                     }
                 >
-                    <img src={clickedPage === "course" ? "/icons/fileBlue.svg" : "/icons/file.svg"} className="w-4.5" alt="" />
+                    <img src={clickedPage === "course" ? `${import.meta.env.BASE_URL}icons/fileBlue.svg` : `${import.meta.env.BASE_URL}/icons/file.svg`} className="w-4.5" alt="" />
                     <p className="text-sm">Courses</p>
                 </Link>
                 <hr className="flex-grow border-gray-200 my-2" />
                 <button
                     onClick={handleLogout}
                     className="flex items-center gap-2.5 p-3 cursor-pointer">
-                    <img src="/icons/log-out-03.png" alt="" />
+                    <img src={`${import.meta.env.BASE_URL}icons/log-out-03.png`} alt="" />
                     <p className="text-gray-500 text-sm">Logout</p>
                 </button>
 

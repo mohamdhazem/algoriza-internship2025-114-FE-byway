@@ -18,7 +18,7 @@ export const Header = ({ type }) => {
             <div className="flex items-center justify-between gap-4">
                 <div className="bg-white shadow w-12 h-12 border border-white rounded-4xl flex items-center justify-center">
                     <div className="relative ">
-                        <img src="/icons/alert.svg" alt="Alert" className="" />
+                        <img src={`${import.meta.env.BASE_URL}icons/alert.svg`} alt="Alert" className="" />
                         <span className="absolute top-1/30 -right-1/9 w-2 h-2 bg-red-600 border border-white rounded-full"></span>
                     </div>
                 </div>

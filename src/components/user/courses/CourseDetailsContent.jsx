@@ -1,7 +1,5 @@
 import { ChevronRight } from "lucide-react"
 import RateDisplay from "./RateDisplay"
-import starEmpty from "/icons/StarEmpty.svg";
-import starFilled from "/icons/StarFilled.svg";
 import { preconnect } from "react-dom";
 import { useEffect, useState } from "react";
 import { CourseCard } from "../../shared/CourseCard";
@@ -19,6 +17,7 @@ export const CourseDetailsContent = ({ id }) => {
     const [courseContent, setCourseContent] = useState([]);
     const [relatedCourses, setRelatedCourses] = useState([]);
     const [isAddedToCart, setIsAddedToCart] = useState(false);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const fetchCourse = async () => {
@@ -28,6 +27,9 @@ export const CourseDetailsContent = ({ id }) => {
                 setCourseDetials(res.data.course);
                 setRelatedCourses(res.data.relatedCourses);
                 setCourseContent(res.data.course.Contents);
+
+                const res2 = await api.get(`cart/IsAddedToCart/${id}`);
+                setIsAddedToCart(res2.data);
 
                 console.log(res.data);
                 console.log("courseDetails: ", courseDetails);
@@ -72,7 +74,7 @@ export const CourseDetailsContent = ({ id }) => {
             const backendMessage =
                 err.response?.data?.message || err.response?.data || "Failed to add to cart";
 
-            showError(backendMessage);
+            setError(backendMessage);
         }
     };
 
@@ -117,7 +119,7 @@ export const CourseDetailsContent = ({ id }) => {
                 </div>
                 <div className="flex justify-start items-center gap-3 text-sm text-gray-700 mt-1">
                     <img
-                        src={`/icons/category/${courseDetails?.categoryName === "UI/UX Design" ? "UIUX Design" : courseDetails?.categoryName}.svg`}
+                        src={`${import.meta.env.BASE_URL}/icons/category/${courseDetails?.categoryName === "UI/UX Design" ? "UIUX Design" : courseDetails?.categoryName}.svg`}
                         className="w-5 h-5 object-cover"
                         alt=""
                     />
@@ -135,19 +137,22 @@ export const CourseDetailsContent = ({ id }) => {
                     className={`${isAddedToCart ? `bg-[#D9D9D9]` : `bg-[#020617]`} text-white rounded-lg h-12 cursor-pointer mt-4`}>
                     Add To Cart
                 </button>
-                <Link 
-                to={"/cart"}
-                className="bg-white border border-[#020617] rounded-lg h-12 mt-3.5 cursor-pointer hover:bg-gray-200 transition-colors duration-300 ease-in-out flex justify-center items-center">
+                <Link
+                    to={"/cart"}
+                    className="bg-white border border-[#020617] rounded-lg h-12 mt-3.5 cursor-pointer hover:bg-gray-200 transition-colors duration-300 ease-in-out flex justify-center items-center">
                     Buy Now
                 </Link>
+                {error && (
+                        <p className="text-red-500 text-sm mt-2">{error}</p>
+                    )}
                 <div className="h-[1px] bg-[#E2E8F0] my-8 -mx-4" />
                 <p className="text-gray-900 ">Share</p>
                 <div className="flex justify-start items-center gap-6 pt-3">
-                    <img src="/icons/social/facebook.svg" className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
-                    <img src="/icons/social/github.svg" className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
-                    <img src="/icons/social/google.svg" className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
-                    <img src="/icons/social/x.svg" className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
-                    <img src="/icons/social/microsoft.svg" className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
+                    <img src={`${import.meta.env.BASE_URL}icons/social/facebook.svg`} className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
+                    <img src={`${import.meta.env.BASE_URL}icons/social/github.svg`} className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
+                    <img src={`${import.meta.env.BASE_URL}icons/social/google.svg`} className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
+                    <img src={`${import.meta.env.BASE_URL}icons/social/x.svg`} className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
+                    <img src={`${import.meta.env.BASE_URL}icons/social/microsoft.svg`} className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
                 </div>
             </div>
 
@@ -203,19 +208,19 @@ export const CourseDetailsContent = ({ id }) => {
                     <div className="flex flex-col justify-center items-start gap-2.5">
                         <div className="flex items-center gap-1.5">
                             <span>
-                                <img src="/icons/courseDetails/review.svg" alt="" />
+                                <img src={`${import.meta.env.BASE_URL}icons/courseDetails/review.svg`} alt="" />
                             </span>
                             <p className="text-sm text-gray-900">40,445 Reviews</p>
                         </div>
                         <div className="flex items-center gap-1">
                             <span>
-                                <img src="/icons/courseDetails/students.svg" alt="" />
+                                <img src={`${import.meta.env.BASE_URL}icons/courseDetails/students.svg`} alt="" />
                             </span>
                             <p className="text-sm text-gray-900">{courseDetails?.instructorStudents} Students</p>
                         </div>
                         <div className="flex items-center gap-1 pl-1">
                             <span>
-                                <img src="/icons/courseDetails/courses.svg" alt="" />
+                                <img src={`${import.meta.env.BASE_URL}icons/courseDetails/courses.svg`} alt="" />
                             </span>
                             <p className="text-sm text-gray-900">{courseDetails?.instructorCourses} Courses</p>
                         </div>
@@ -261,7 +266,7 @@ export const CourseDetailsContent = ({ id }) => {
                     <div className="col-span-1">
                         <div className="flex justify-start gap-2">
                             <div className="flex items-start gap-0.5 mb-0.5">
-                                <img src="/icons/StarFilled.svg" className="w-5 h-5 mt-0.5" alt="" />
+                                <img src={`${import.meta.env.BASE_URL}icons/StarFilled.svg`} className="w-5 h-5 mt-0.5" alt="" />
                                 <h4>4.6</h4>
                             </div>
                             <div className="flex items-end">
@@ -284,7 +289,9 @@ export const CourseDetailsContent = ({ id }) => {
                                                     return (
                                                         <img
                                                             key={i}
-                                                            src={isActive ? starFilled : starEmpty}
+                                                            src={isActive
+                                                                ? `${import.meta.env.BASE_URL}icons/StarFilled.svg`
+                                                                : `${import.meta.env.BASE_URL}icons/StarEmpty.svg`}
                                                             alt="star"
                                                             className="w-5 h-5"
                                                         />
@@ -301,13 +308,13 @@ export const CourseDetailsContent = ({ id }) => {
                         <div className="flex border border-[#E2E8F0] rounded-xl p-4">
                             <div className="flex justify-between gap-20">
                                 <div className="flex justify-start gap-3">
-                                    <img src="/icons/courseDetails/reviewer.png" className="w-15 h-15 rounded-full object-cover" alt="" />
+                                    <img src={`${import.meta.env.BASE_URL}icons/courseDetails/reviewer.png`} className="w-15 h-15 rounded-full object-cover" alt="" />
                                     <h5 className="w-40 pt-4">Mark Doe</h5>
                                 </div>
                                 <div className="flex flex-col justify-start gap-1 max-w-157">
                                     <div className="flex justify-start items-center gap-6">
                                         <div className="flex gap-1">
-                                            <img src="/icons/courseDetails/star2.svg" alt="" />
+                                            <img src={`${import.meta.env.BASE_URL}icons/courseDetails/star2.svg`} alt="" />
                                             <h5>5</h5>
                                         </div>
                                         <p className="text-sm">Reviewed on 22nd March, 2024</p>
@@ -319,13 +326,13 @@ export const CourseDetailsContent = ({ id }) => {
                         <div className="flex border border-[#E2E8F0] rounded-xl p-4">
                             <div className="flex justify-between gap-20">
                                 <div className="flex justify-start gap-3">
-                                    <img src="/icons/courseDetails/reviewer.png" className="w-15 h-15 rounded-full object-cover" alt="" />
+                                    <img src={`${import.meta.env.BASE_URL}icons/courseDetails/reviewer.png`} className="w-15 h-15 rounded-full object-cover" alt="" />
                                     <h5 className="w-40 pt-4">Mark Doe</h5>
                                 </div>
                                 <div className="flex flex-col justify-start gap-1 max-w-157">
                                     <div className="flex justify-start items-center gap-6">
                                         <div className="flex gap-1">
-                                            <img src="/icons/courseDetails/star2.svg" alt="" />
+                                            <img src={`${import.meta.env.BASE_URL}icons/courseDetails/star2.svg`} alt="" />
                                             <h5>5</h5>
                                         </div>
                                         <p className="text-sm">Reviewed on 22nd March, 2024</p>
@@ -337,13 +344,13 @@ export const CourseDetailsContent = ({ id }) => {
                         <div className="flex border border-[#E2E8F0] rounded-xl p-4">
                             <div className="flex justify-between gap-20">
                                 <div className="flex justify-start gap-3">
-                                    <img src="/icons/courseDetails/reviewer.png" className="w-15 h-15 rounded-full object-cover" alt="" />
+                                    <img src={`${import.meta.env.BASE_URL}icons/courseDetails/reviewer.png`} className="w-15 h-15 rounded-full object-cover" alt="" />
                                     <h5 className="w-40 pt-4">Mark Doe</h5>
                                 </div>
                                 <div className="flex flex-col justify-start gap-1 max-w-157">
                                     <div className="flex justify-start items-center gap-6">
                                         <div className="flex gap-1">
-                                            <img src="/icons/courseDetails/star2.svg" alt="" />
+                                            <img src={`${import.meta.env.BASE_URL}icons/courseDetails/star2.svg`} alt="" />
                                             <h5>5</h5>
                                         </div>
                                         <p className="text-sm">Reviewed on 22nd March, 2024</p>

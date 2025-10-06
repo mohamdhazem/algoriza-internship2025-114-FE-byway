@@ -147,7 +147,7 @@ export const LandingContent = () => {
                         <div />
                     ) : (
                         <Link
-                            to={"/usercourses"}
+                            to={"/userlogin"}
                             className="cursor-pointer rounded-lg bg-[#3B82F6] text-white w-full max-w-[165px] h-12 flex justify-center items-center">
                             Start your journey
                         </Link>
@@ -161,7 +161,7 @@ export const LandingContent = () => {
                     <div className="flex-1 flex flex-col justify-center items-center min-w-[140px] sm:min-w-[180px] md:min-w-[200px]">
                         <div className="bg-[#F87171] rounded-full w-35 h-35 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-54 lg:h-54 relative overflow-visible z-10">
                             <img
-                                src="images/girl2.webp"
+                                src={`${import.meta.env.BASE_URL}images/girl2.webp`}
                                 className="absolute bottom-0 w-35 sm:w-36 md:w-44 lg:w-60 h-[130%] left-1/2 -translate-x-1/2 object-contain rounded-b-full"
                                 alt=""
                             />
@@ -174,7 +174,7 @@ export const LandingContent = () => {
                             </div>
                         </div>
                         <img
-                            src="images/Frame.png"
+                            src={`${import.meta.env.BASE_URL}images/Frame.png`}
                             className="absolute -left-4 top-24 sm:left-15 sm:top-20 md:top-[20%] md:-left-[5%] lg:-left-7 lg:top-35 w-18 md:w-22"
                             alt=""
                         />
@@ -186,7 +186,7 @@ export const LandingContent = () => {
 
                         <div className="relative bg-[#60A5FA] rounded-full w-35 h-35 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-54 lg:h-54 z-10">
                             <img
-                                src="images/boy.webp"
+                                src={`${import.meta.env.BASE_URL}images/boy.webp`}
                                 className="absolute bottom-0 w-35 sm:w-36 md:w-44 lg:w-60 h-[120%] left-1/2 -translate-x-1/2 object-contain rounded-b-full z-10"
                                 alt=""
                             />
@@ -199,7 +199,7 @@ export const LandingContent = () => {
                             </div>
                         </div>
                         <img
-                            src="images/Frame.png"
+                            src={`${import.meta.env.BASE_URL}images/Frame.png`}
                             className="absolute rotate-80 left-[43%] top-[5%] sm:left-[46%] sm:top-[7%] md:top-0 lg:left-[45%] lg:top-0 w-18 md:w-22"
                             alt=""
                         />
@@ -212,7 +212,7 @@ export const LandingContent = () => {
 
                         <div className="relative bg-[#FACC15] rounded-full w-35 h-35 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-54 lg:h-54 mt-4 md:mt-0">
                             <img
-                                src="images/girl1.webp"
+                                src={`${import.meta.env.BASE_URL}images/girl1.webp`}
                                 className="absolute bottom-0 w-35 sm:w-36 md:w-44 lg:w-60 h-[95%] left-[50%] -translate-x-1/2 object-cover rounded-b-full z-10 scale-x-[-1]"
                                 alt=""
                             />
@@ -225,11 +225,11 @@ export const LandingContent = () => {
                             </div>
                             <span className="w-[110px] sm:w-[150px] md:w-[170px] h-auto min-h-[70px] sm:min-h-[80px] md:min-h-[100px] bg-white absolute -left-15 sm:-left-10 md:-left-20 bottom-3 sm:bottom-4 md:bottom-5 rounded-xl drop-shadow-lg flex flex-col gap-1.5 sm:gap-2 pt-2 px-1.5 z-20">
                                 <div className="flex flex-row -space-x-2 sm:-space-x-3">
-                                    <img src="images/community5.png" className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
-                                    <img src="images/community4.png" className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
-                                    <img src="images/community3.png" className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
-                                    <img src="images/community2.png" className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
-                                    <img src="images/community1.png" className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
+                                    <img src={`${import.meta.env.BASE_URL}images/community5.png`} className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
+                                    <img src={`${import.meta.env.BASE_URL}images/community4.png`} className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
+                                    <img src={`${import.meta.env.BASE_URL}images/community3.png`} className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
+                                    <img src={`${import.meta.env.BASE_URL}images/community2.png`} className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
+                                    <img src={`${import.meta.env.BASE_URL}images/community1.png`} className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 rounded-full" alt="" />
                                 </div>
                                 <div className="text-gray-900 font-semibold leading-4 text-[10px] sm:text-xs md:text-sm text-start">
                                     Join our community of 1200+ Students
@@ -323,7 +323,7 @@ export const LandingContent = () => {
                 >
                     <div className="flex justify-center items-start">
                         <img
-                            src="images/becomeInstructor.png"
+                            src={`${import.meta.env.BASE_URL}images/becomeInstructor.png`}
                             className="w-60 h-60 md:w-100 md:h-105 object-contain"
                             alt=""
                         />
@@ -367,7 +367,7 @@ export const LandingContent = () => {
                     </div>
                     <div className="flex justify-center items-center">
                         <img
-                            src="images/becomeInstructor2.png"
+                            src={`${import.meta.env.BASE_URL}images/becomeInstructor2.png`}
                             className="w-60 h-60 md:w-118 md:h-95 object-contain"
                             alt=""
                         />

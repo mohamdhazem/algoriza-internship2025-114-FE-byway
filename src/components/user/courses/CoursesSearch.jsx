@@ -18,7 +18,7 @@ export const CoursesSearch = () => {
 
     const [pageIndex, setPageIndex] = useState(1);
     const [pageSize] = useState(9);
-    const [rate, setRate] = useState(null); // double?
+    const [rate, setRate] = useState(null);
     const [minLecturesNumber, setMinLecturesNumber] = useState(null);
     const [maxLecturesNumber, setMaxLecturesNumber] = useState(null);
     const [minPrice, setMinPrice] = useState(null);
@@ -77,6 +77,7 @@ export const CoursesSearch = () => {
             const res = await api.get(`/Course/ForUser?${query.toString()}`);
 
             setCourses(res.data.data);
+            setCount(res.data.count);
             console.log("courses", res.data);
         } catch (err) {
             console.error("Error fetching courses", err);
