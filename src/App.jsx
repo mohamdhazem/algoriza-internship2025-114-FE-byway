@@ -17,13 +17,14 @@ import { Checkout } from './pages/user/Checkout'
 import { CompletedOrder } from './pages/user/CompletedOrder'
 import { AuthCallback } from './components/user/login/Auth-Callback'
 import { SignUp } from './pages/user/SignUp'
+import { Callback } from './components/user/login/Callback'
 
 
 function App() {
 
   return (
     <>
-      <BrowserRouter basename='/algoriza-internship2025-114-FE-byway'>
+      <BrowserRouter>
         <ScrollToTop />
         <Routes>
           <Route path="/AdminLogin" element={<AdminLogin></AdminLogin>}></Route>
@@ -34,7 +35,7 @@ function App() {
           <Route path="/UserCourses" element={<UserCourses></UserCourses>}></Route>
           <Route path="/CourseDetails/:id" element={<CourseDetails></CourseDetails>}></Route>
 
-          <Route path="/auth-callback" element={<AuthCallback></AuthCallback>}></Route>
+          <Route path="/auth-callback" element={<Callback></Callback>}></Route>
 
           <Route element={<ProtectedRoute allowedRoles={["User"]} />}>
             <Route path="/Cart" element={<ShoppingCart></ShoppingCart>}></Route>

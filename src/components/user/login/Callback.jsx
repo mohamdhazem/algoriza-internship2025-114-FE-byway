@@ -5,7 +5,8 @@ import { useAtom, useSetAtom } from "jotai";
 import { refreshUserAtom } from "../../../store/userAtom";
 import { refreshCartCoursesCountAtom } from "../../../store/cartAtom";
 
-export const AuthCallback = () => {
+
+export const Callback = () => {
     const navigate = useNavigate();
     const serRefreshUserAtom = useSetAtom(refreshUserAtom);
     const [, refreshCartCount] = useAtom(refreshCartCoursesCountAtom);

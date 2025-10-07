@@ -5,8 +5,11 @@ export default function ProtectedRoute({ allowedRoles }) {
     const token = getToken();
     const role = getUserRole();
 
-    if (!token) {
-        return <Navigate to="/AdminLogin" replace />;
+    if (!token && allowedRoles) {
+        if (allowedRoles[0] === "Admin")
+            return <Navigate to="/AdminLogin" replace />;
+        else
+            return <Navigate to="/UserLogin" replace />;
     }
 
     if (allowedRoles && !allowedRoles.includes(role)) {
