@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp, Check } from "lucide-react";
 
-export default function CategoryFilter({ onChange }) {
+export default function CategoryFilter({ resetFlag, onChange }) {
     const [categories, setCategories] = useState([]);
     const [open, setOpen] = useState(true); // start open
 
@@ -11,6 +11,11 @@ export default function CategoryFilter({ onChange }) {
         { id: 3, label: "Backend" },
         { id: 4, label: "UI/UX Design" }
     ];
+
+    useEffect(() => {
+        setCategories([]);
+        
+    },[resetFlag])
 
     const handleCategoryChange = (catId) => {
         setCategories((prev) => {

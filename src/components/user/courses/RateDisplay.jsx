@@ -1,7 +1,7 @@
 
 export default function RateDisplay({ value = 5 }) {
     return (
-        <div className="flex items-center justify-start h-10">
+        <div className="flex items-center justify-start">
             {Array(5)
                 .fill(0)
                 .map((_, i) => {
@@ -15,7 +15,7 @@ export default function RateDisplay({ value = 5 }) {
                                 ? `${import.meta.env.BASE_URL}icons/courseDetails/star2.svg`
                                 : `${import.meta.env.BASE_URL}icons/StarEmpty.svg`}
                             alt="star"
-                            className="w-4 h-4"
+                            className="w-3.5 h-3.5 md:w-4 sm:h-4"
                         />
                     );
                 })}

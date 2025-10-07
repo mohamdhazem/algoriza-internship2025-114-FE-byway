@@ -1,4 +1,5 @@
 import { PaymentDetails } from "../../components/user/Order/PaymentDetails"
+import { Footer } from "../../components/user/shared/Footer"
 import { NavBar } from "../../components/user/shared/NavBar"
 
 export const Checkout = () => {
@@ -11,6 +12,9 @@ export const Checkout = () => {
             <main>
                 <PaymentDetails />
             </main>
+            <footer>
+                <Footer />
+            </footer>
         </div>
     )
 }

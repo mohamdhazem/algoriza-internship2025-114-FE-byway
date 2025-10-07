@@ -3,7 +3,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { Range } from "react-range";
 
 
-export default function PriceFilter({ onChange }) {
+export default function PriceFilter({ resetFlag, onChange }) {
     const [price, setPrice] = useState([0, 1000]);
     const [open, setOpen] = useState(true); // start open
 
@@ -12,9 +12,10 @@ export default function PriceFilter({ onChange }) {
         onChange && onChange(values);
     };
 
-    // useEffect(() => {
-    //     setRating(value || 0);
-    // }, [value]);
+    useEffect(() => {
+        setPrice([0, 1000]);
+        
+    }, [resetFlag])
 
     return (
         <div className="flex flex-col items-start w-full">

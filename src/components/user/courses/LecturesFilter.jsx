@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 
-export default function LecturesFilter({ onChange }) {
+export default function LecturesFilter({ resetFlag, onChange }) {
     const [lectures, setLectures] = useState("");
     const [open, setOpen] = useState(true); // start open
 
+    useEffect(() => {
+        setLectures("");
+
+    },[resetFlag])
 
     const lectureOptions = [
         { label: "1-15", min: 1, max: 15 },
@@ -14,15 +18,10 @@ export default function LecturesFilter({ onChange }) {
         { label: "More than 45", min: 46, max: null }, // null = no max
     ];
 
-
     const clickHandler = (option) => {
         setLectures(option.label);
         onChange && onChange(option);
     };
-
-    // useEffect(() => {
-    //     setRating(value || 0);
-    // }, [value]);
 
     return (
         <div className="flex flex-col items-start">

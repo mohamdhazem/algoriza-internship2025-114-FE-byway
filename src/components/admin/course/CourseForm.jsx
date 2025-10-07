@@ -285,7 +285,7 @@ export const CourseForm = ({ mode, courseId }) => {
                                 ) : (
                                     // Default placeholder
                                     <>
-                                        <img src={`${import.meta.env.BASE_URL}/icons/uploadImageIcon.svg`} className="w-5 h-5" alt="" />
+                                        <img src={`${import.meta.env.BASE_URL}icons/uploadImageIcon.svg`} className="w-5 h-5" alt="" />
                                         <span className="text-[#737F8E] text-sm">Upload Image</span>
                                     </>
                                 )}
@@ -534,9 +534,9 @@ export const CourseForm = ({ mode, courseId }) => {
                             <button
                                 type="button"
                                 onClick={addContentItem}
-                                className="mt-2 px-4 py-2 flex items-center justify-center gap-2 rounded-lg text-[#202637] font-semibold bg-[#ECEEF0] cursor-pointer"
+                                className="mt-2 px-4 py-2.5 flex items-center justify-center gap-2 rounded-lg text-[#202637] font-semibold bg-[#ECEEF0] cursor-pointer"
                             >
-                                <h3 className="">Add Another Content</h3>
+                                <h3 className="text-sm">Add Another Content</h3>
                                 <img src={`${import.meta.env.BASE_URL}icons/texteditor/addContent.svg`} className="w-3.5 h-3.5" alt="" />
                             </button>
                         )}
@@ -545,7 +545,7 @@ export const CourseForm = ({ mode, courseId }) => {
             )}
 
             <div className="grid grid-cols-10 gap-2 w-full h-12 py-1">
-                {(step === 2 && mode !== "view") || (step === 1) && (
+                {((step === 2 && mode !== "view") || (step === 1)) && (
                     <Link
                         className="col-span-1 flex items-center justify-center bg-[#ffe7e7] text-[#EB5757] rounded-lg cursor-pointer"
                         to={"/Courses"}

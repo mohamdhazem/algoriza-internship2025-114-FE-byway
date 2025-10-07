@@ -81,29 +81,27 @@ export const CourseDetailsContent = ({ id }) => {
     return (
         <div className="font-inter relative">
             {/* intro */}
-            <div className="px-20 py-10 flex flex-col gap-4 bg-[#F8FAFC] text-start">
-                <div className="flex justify-start items-center gap-2 text-sm">
-                    <p>Home</p>
+            <div className="px-5 md:px-10 lg:px-20 py-10 flex flex-col gap-4 bg-[#F8FAFC] text-start">
+                <div className="flex flex-wrap justify-start items-center gap-0.5 sm:gap-2">
+                    <p className="text-sm sm:text-[16px]">Home</p>
                     <ChevronRight className="text-gray-900" size={18} />
-                    <p>Courses</p>
+                    <p className="text-sm sm:text-[16px]">Courses</p>
                     <ChevronRight className="text-gray-900" size={18} />
-                    <p className="text-[#2563EB]">
-                        {courseDetails?.name}
-                    </p>
+                    <p className="text-[#2563EB] text-sm sm:text-[16px] truncate sm:max-w-[250px]">{courseDetails?.name}</p>
                 </div>
-                <h1>{courseDetails?.name}</h1>
-                <p className="text-[17px] max-w-180">
+                <h1 className="text-3xl lg:text-[40px] sm:py-2">{courseDetails?.name}</h1>
+                <p className="text-sm sm:text-[17px] md:max-w-100 xl:max-w-180">
                     {courseDetails?.description}
                 </p>
-                <div className="flex justify-start items-center gap-1.5 text-sm">
-                    <p className="text-[#FEC84B] pt-1">
+                <div className="flex justify-start items-center sm:gap-1.5">
+                    <p className="text-[#FEC84B] sm:pt-1 text-[14px] sm:text-[16px]">
                         {courseDetails?.rate}
                     </p>
                     <RateDisplay
                         value={Math.round(courseDetails?.rate ?? 0)}
                     />
                     <div className="w-[1px] bg-gray-700 h-4 mx-1"></div>
-                    <p>
+                    <p className="text-[12px] sm:text-[16px]">
                         {courseDetails?.totalHours} Total Hours. {courseDetails?.totalLectures} Lectures. {getEnumLabel(LevelEnum, courseDetails?.level)}
                     </p>
                 </div>
@@ -119,7 +117,7 @@ export const CourseDetailsContent = ({ id }) => {
                 </div>
                 <div className="flex justify-start items-center gap-3 text-sm text-gray-700 mt-1">
                     <img
-                        src={`${import.meta.env.BASE_URL}/icons/category/${courseDetails?.categoryName === "UI/UX Design" ? "UIUX Design" : courseDetails?.categoryName}.svg`}
+                        src={`${import.meta.env.BASE_URL}icons/category/${courseDetails?.categoryName === "UI/UX Design" ? "UIUX Design" : courseDetails?.categoryName}.svg`}
                         className="w-5 h-5 object-cover"
                         alt=""
                     />
@@ -128,52 +126,52 @@ export const CourseDetailsContent = ({ id }) => {
             </div>
 
             {/* card */}
-            <div className="absolute top-2 right-15 z-10 w-100 h-145 flex flex-col p-4 rounded-xl shadow-soft text-start bg-white">
-                <img src={courseDetails?.imageUrl} className="h-50 rounded-lg object-cover" alt="" />
-                <h3 className="pt-7">${courseDetails?.cost.toFixed(2)}</h3>
+            <div className="md:absolute md:top-2 md:right-5 z-10 md:w-60 md:h-fit lg:w-100 lg:right-15 lg:h-145 flex flex-col p-6 md:p-4 rounded-xl shadow-soft text-start bg-white">
+                <img src={courseDetails?.imageUrl} className="h-45 sm:h-55 md:h-30 lg:h-50 rounded-lg object-cover" alt="" />
+                <h3 className="pt-7 md:pt-2 md:text-lg lg:pt-7 lg:text-[24px]">${courseDetails?.cost.toFixed(2)}</h3>
                 <button
                     onClick={handleAddToCart}
                     disabled={isAddedToCart}
-                    className={`${isAddedToCart ? `bg-[#D9D9D9]` : `bg-[#020617]`} text-white rounded-lg h-12 cursor-pointer mt-4`}>
+                    className={`${isAddedToCart ? `bg-[#D9D9D9]` : `bg-[#020617]`} text-white md:text-sm lg:text-[16px] rounded-lg h-12 md:h-fit md:py-1.5 lg:h-12 cursor-pointer lg:mt-4`}>
                     Add To Cart
                 </button>
                 <Link
                     to={"/cart"}
-                    className="bg-white border border-[#020617] rounded-lg h-12 mt-3.5 cursor-pointer hover:bg-gray-200 transition-colors duration-300 ease-in-out flex justify-center items-center">
+                    className="bg-white md:text-sm lg:text-[16px] border border-[#020617] rounded-lg h-12 md:h-fit md:py-1.5 lg:h-12 cursor-pointer mt-3 md:mt-1 lg:mt-4 hover:bg-gray-200 transition-colors duration-300 ease-in-out flex justify-center items-center">
                     Buy Now
                 </Link>
                 {error && (
-                        <p className="text-red-500 text-sm mt-2">{error}</p>
-                    )}
-                <div className="h-[1px] bg-[#E2E8F0] my-8 -mx-4" />
-                <p className="text-gray-900 ">Share</p>
-                <div className="flex justify-start items-center gap-6 pt-3">
-                    <img src={`${import.meta.env.BASE_URL}icons/social/facebook.svg`} className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
-                    <img src={`${import.meta.env.BASE_URL}icons/social/github.svg`} className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
-                    <img src={`${import.meta.env.BASE_URL}icons/social/google.svg`} className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
-                    <img src={`${import.meta.env.BASE_URL}icons/social/x.svg`} className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
-                    <img src={`${import.meta.env.BASE_URL}icons/social/microsoft.svg`} className="w-10 h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
+                    <p className="text-red-500 text-sm mt-2">{error}</p>
+                )}
+                <div className="h-[1px] bg-[#E2E8F0] my-8 md:my-4 lg:my-8 -mx-4" />
+                <p className="text-gray-900 md:text-sm lg:text-[16px]">Share</p>
+                <div className="flex justify-start items-center gap-6 md:gap-3 lg:gap-6 pt-3 w-20">
+                    <img src={`${import.meta.env.BASE_URL}icons/social/facebook.svg`} className="w-10 h-10 md:w-8 md:h-8 lg:w-10 lg:h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
+                    <img src={`${import.meta.env.BASE_URL}icons/social/github.svg`} className="w-10 h-10 md:w-8 md:h-8 lg:w-10 lg:h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
+                    <img src={`${import.meta.env.BASE_URL}icons/social/google.svg`} className="w-10 h-10 md:w-8 md:h-8 lg:w-10 lg:h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
+                    <img src={`${import.meta.env.BASE_URL}icons/social/x.svg`} className="w-10 h-10 md:w-8 md:h-8 lg:w-10 lg:h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
+                    <img src={`${import.meta.env.BASE_URL}icons/social/microsoft.svg`} className="w-10 h-10 md:w-8 md:h-8 lg:w-10 lg:h-10 outline-5 outline-gray-100 rounded-full p-1.5 cursor-pointer" alt="" />
                 </div>
             </div>
 
             {/* buttons */}
-            <div className="px-20 pt-10 pb-5 flex justify-start gap-5">
-                <a href="#description" className="px-6 py-3 border border-[#E2E8F0] rounded-md bg-[#EFF6FF] cursor-pointer">
+            <div className="px-5 md:px-10 lg:px-20 pt-10 pb-5 flex justify-start gap-1 sm:gap-3 md:gap-5">
+                <a href="#description" className="px-2 sm:px-6 py-3 border border-[#E2E8F0] rounded-md bg-[#EFF6FF] cursor-pointer">
                     <p className="text-sm">
                         Description
                     </p>
                 </a>
-                <a href="#instructor" className="px-6 py-3 border border-[#E2E8F0] rounded-md hover:bg-[#EFF6FF] cursor-pointer">
+                <a href="#instructor" className="px-2 sm:px-6 py-3 border border-[#E2E8F0] rounded-md hover:bg-[#EFF6FF] cursor-pointer">
                     <p className="text-sm">
                         Instructor
                     </p>
                 </a>
-                <a href="#content" className="px-6 py-3 border border-[#E2E8F0] rounded-md hover:bg-[#EFF6FF] cursor-pointer">
+                <a href="#content" className="px-2 sm:px-6 py-3 border border-[#E2E8F0] rounded-md hover:bg-[#EFF6FF] cursor-pointer">
                     <p className="text-sm">
                         Content
                     </p>
                 </a>
-                <a href="#reviews" className="px-6 py-3 border border-[#E2E8F0] rounded-md hover:bg-[#EFF6FF] cursor-pointer">
+                <a href="#reviews" className="px-2 sm:px-6 py-3 border border-[#E2E8F0] rounded-md hover:bg-[#EFF6FF] cursor-pointer">
                     <p className="text-sm">
                         Reviews
                     </p>
@@ -185,7 +183,7 @@ export const CourseDetailsContent = ({ id }) => {
             {/* Description */}
             <div
                 id="description"
-                className="px-20 py-4 max-w-210 text-start"
+                className="px-5 md:px-10 lg:px-20 py-4 max-w-210 text-start"
             >
                 <h4 className="mt-2">Course Description</h4>
                 <p className="mt-1.5 text-[15px] text-gray-700">{courseDetails?.description}</p>
@@ -198,7 +196,7 @@ export const CourseDetailsContent = ({ id }) => {
             {/* Instructor */}
             <div
                 id="instructor"
-                className="px-20 py-4 max-w-210 text-start"
+                className="px-5 md:px-10 lg:px-20 py-4 max-w-210 text-start"
             >
                 <h4>Instructor</h4>
                 <h4 className="mt-4 text-[#2563EB]">{courseDetails?.instructorName}</h4>
@@ -234,7 +232,7 @@ export const CourseDetailsContent = ({ id }) => {
             <div className="ml-20 mr-150 h-[1px] bg-[#E2E8F0]"></div>
 
             {/* Content */}
-            <div id="content" className="px-20 py-6 max-w-201 text-start">
+            <div id="content" className="px-5 md:px-10 lg:px-20 py-6 max-w-201 text-start">
                 <h4 className="mb-4 font-semibold text-lg">Content</h4>
                 <div className="flex flex-col border border-[#E2E8F0] rounded-lg">
                     {courseDetails?.contents?.map((item, idx, arr) => (
@@ -243,7 +241,7 @@ export const CourseDetailsContent = ({ id }) => {
                             className={`flex justify-between items-center px-6 py-5 ${idx !== arr.length - 1 ? "border-b border-[#E2E8F0]" : ""
                                 }`}
                         >
-                            <h3 className="text-[18px]">{item.name}</h3>
+                            <h3 className="text-sm md:text-[18px]">{item.name}</h3>
                             <div className="flex justify-end gap-4 w-48">
                                 <p className="text-sm">{item.lecturesNumber} Lectures</p>
                                 <p className="text-sm">{item.time.split(":")[0]} Hours</p>
@@ -259,11 +257,11 @@ export const CourseDetailsContent = ({ id }) => {
             {/* Static Reviews */}
             <div
                 id="reviews"
-                className="px-20 py-4 text-start"
+                className="px-5 md:px-10 lg:px-20 py-4 text-start"
             >
                 <h4 className="mt-2">Learner Reviews</h4>
-                <div className="grid grid-cols-4 mt-4">
-                    <div className="col-span-1">
+                <div className="grid grid-cols-1 lg:grid-cols-4 mt-4 gap-8">
+                    <div className="lg:col-span-1">
                         <div className="flex justify-start gap-2">
                             <div className="flex items-start gap-0.5 mb-0.5">
                                 <img src={`${import.meta.env.BASE_URL}icons/StarFilled.svg`} className="w-5 h-5 mt-0.5" alt="" />
@@ -304,61 +302,37 @@ export const CourseDetailsContent = ({ id }) => {
                                 })}
                         </div>
                     </div>
-                    <div className="col-span-3 flex flex-col gap-5">
-                        <div className="flex border border-[#E2E8F0] rounded-xl p-4">
-                            <div className="flex justify-between gap-20">
-                                <div className="flex justify-start gap-3">
-                                    <img src={`${import.meta.env.BASE_URL}icons/courseDetails/reviewer.png`} className="w-15 h-15 rounded-full object-cover" alt="" />
-                                    <h5 className="w-40 pt-4">Mark Doe</h5>
-                                </div>
-                                <div className="flex flex-col justify-start gap-1 max-w-157">
-                                    <div className="flex justify-start items-center gap-6">
-                                        <div className="flex gap-1">
-                                            <img src={`${import.meta.env.BASE_URL}icons/courseDetails/star2.svg`} alt="" />
-                                            <h5>5</h5>
-                                        </div>
-                                        <p className="text-sm">Reviewed on 22nd March, 2024</p>
+                    <div className="lg:col-span-3 flex flex-col gap-5">
+                        {Array(3).fill(0).map((_, idx) => (
+                            <div key={idx} className="flex flex-col sm:flex-col-reverse border border-[#E2E8F0] rounded-xl p-4">
+                                <div className="flex flex-col sm:flex-col gap-4 lg:flex-row justify-between items-start lg:items-start">
+                                    <div className="flex justify-start gap-3">
+                                        <img
+                                            src={`${import.meta.env.BASE_URL}icons/courseDetails/reviewer.png`}
+                                            className="w-12 h-12 sm:w-15 sm:h-15 rounded-full object-cover"
+                                            alt=""
+                                        />
+                                        <h5 className="w-40 pt-4 text-base">Mark Doe</h5>
                                     </div>
-                                    <p>I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.</p>
+                                    <div className="flex flex-col justify-start gap-1 max-w-157">
+                                        <div className="flex justify-start items-center gap-6 sm:gap-3">
+                                            <div className="flex gap-1">
+                                                <img
+                                                    src={`${import.meta.env.BASE_URL}icons/courseDetails/star2.svg`}
+                                                    alt=""
+                                                />
+                                                <h5>5</h5>
+                                            </div>
+                                            <p className="text-sm">Reviewed on 22nd March, 2024</p>
+                                        </div>
+                                        <p className="text-xs mt-2 md:mt-0 md:text-[16px]">
+                                            I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="flex border border-[#E2E8F0] rounded-xl p-4">
-                            <div className="flex justify-between gap-20">
-                                <div className="flex justify-start gap-3">
-                                    <img src={`${import.meta.env.BASE_URL}icons/courseDetails/reviewer.png`} className="w-15 h-15 rounded-full object-cover" alt="" />
-                                    <h5 className="w-40 pt-4">Mark Doe</h5>
-                                </div>
-                                <div className="flex flex-col justify-start gap-1 max-w-157">
-                                    <div className="flex justify-start items-center gap-6">
-                                        <div className="flex gap-1">
-                                            <img src={`${import.meta.env.BASE_URL}icons/courseDetails/star2.svg`} alt="" />
-                                            <h5>5</h5>
-                                        </div>
-                                        <p className="text-sm">Reviewed on 22nd March, 2024</p>
-                                    </div>
-                                    <p>I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex border border-[#E2E8F0] rounded-xl p-4">
-                            <div className="flex justify-between gap-20">
-                                <div className="flex justify-start gap-3">
-                                    <img src={`${import.meta.env.BASE_URL}icons/courseDetails/reviewer.png`} className="w-15 h-15 rounded-full object-cover" alt="" />
-                                    <h5 className="w-40 pt-4">Mark Doe</h5>
-                                </div>
-                                <div className="flex flex-col justify-start gap-1 max-w-157">
-                                    <div className="flex justify-start items-center gap-6">
-                                        <div className="flex gap-1">
-                                            <img src={`${import.meta.env.BASE_URL}icons/courseDetails/star2.svg`} alt="" />
-                                            <h5>5</h5>
-                                        </div>
-                                        <p className="text-sm">Reviewed on 22nd March, 2024</p>
-                                    </div>
-                                    <p>I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.</p>
-                                </div>
-                            </div>
-                        </div>
+                        ))}
+
                         <div className="flex justify-start">
                             <button className="px-6 py-3 border border-[#0F172A] cursor-pointer rounded-lg">
                                 <p className="text-sm text-[#0F172A]">View more Reviews</p>
@@ -369,9 +343,9 @@ export const CourseDetailsContent = ({ id }) => {
             </div>
 
             {/* related courses */}
-            <div className="px-20 text-start py-25">
+            <div className="px-5 md:px-10 lg:px-20 text-start py-25">
                 <h4>More Courses Like This</h4>
-                <div className="grid grid-cols-4 gap-8 py-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 py-5">
                     {relatedCourses.map((c, index) => (
                         <CourseCard key={index} course={c} role="user" />
                     ))}

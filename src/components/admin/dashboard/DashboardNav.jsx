@@ -14,14 +14,15 @@ export const DashboardNav = () => {
 
     const handleLogout = () => {
         localStorage.removeItem("token");
-        navigate("/AdminLogin")
+        navigate("/Landing")
     }
     return (
         <div className="fixed top-0 left-0 h-screen w-1/5 border-r border-r-gray-200">
             <div className="">
                 <Link
+                onClick={() => handleClick("dashboard")}
                     className="flex items-center pt-3 pl-3"
-                    to="/adminlogin">
+                    to="/dashboard">
                     <img src={`${import.meta.env.BASE_URL}icons/37c5de785384c3fafe195a0ef1d99825e88d3fdf.png`}
                         alt=""
                         className="h-10 min-w-10" />
@@ -38,7 +39,7 @@ export const DashboardNav = () => {
                             : "flex items-center gap-2.5 p-3 transition-colors duration-500 ease-in-out"
                     }
                 >
-                    <img src={clickedPage === "dashboard" ? `${import.meta.env.BASE_URL}icons/homeBlue.svg` : `${import.meta.env.BASE_URL}/icons/home.svg`} className="w-4.5 h-5" alt="" />
+                    <img src={clickedPage === "dashboard" ? `${import.meta.env.BASE_URL}icons/homeBlue.svg` : `${import.meta.env.BASE_URL}icons/home.svg`} className="w-4.5 h-5" alt="" />
                     <p className="text-sm">Dashboard</p>
                 </Link>
                 <Link
@@ -49,7 +50,7 @@ export const DashboardNav = () => {
                         : "flex items-center gap-2.5 p-3 transition-colors duration-500 ease-in-out"
                     }
                 >
-                    <img src={clickedPage === "instructor" ? `${import.meta.env.BASE_URL}icons/userBlue.svg` : `${import.meta.env.BASE_URL}/icons/user.svg`} className="w-4.5 h-5" alt="" />
+                    <img src={clickedPage === "instructor" ? `${import.meta.env.BASE_URL}icons/userBlue.svg` : `${import.meta.env.BASE_URL}icons/user.svg`} className="w-4.5 h-5" alt="" />
                     <p className="text-sm">Instructors</p>
                 </Link>
                 <Link
@@ -60,7 +61,7 @@ export const DashboardNav = () => {
                         : "flex items-center gap-2.5 p-3 transition-colors duration-500 ease-in-out"
                     }
                 >
-                    <img src={clickedPage === "course" ? `${import.meta.env.BASE_URL}icons/fileBlue.svg` : `${import.meta.env.BASE_URL}/icons/file.svg`} className="w-4.5" alt="" />
+                    <img src={clickedPage === "course" ? `${import.meta.env.BASE_URL}icons/fileBlue.svg` : `${import.meta.env.BASE_URL}icons/file.svg`} className="w-4.5" alt="" />
                     <p className="text-sm">Courses</p>
                 </Link>
                 <hr className="flex-grow border-gray-200 my-2" />

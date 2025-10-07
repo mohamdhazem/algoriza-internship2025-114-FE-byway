@@ -38,7 +38,7 @@ export default function WalletCard() {
 
             if (i === 0) {
                 // current month → value from API
-                result.push({ month, deposits: currentMonthDeposit, withdrawals: currentMonthDeposit - 300}); // withdrawals static
+                result.push({ month, deposits: currentMonthDeposit, withdrawals: currentMonthDeposit - 300 }); // withdrawals static
             } else {
                 // other months → static values
                 const staticIndex = i < 0 ? i + 2 : i + 1; // map -2,-1,1,2 to staticData index
