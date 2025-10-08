@@ -14,25 +14,34 @@ export const StatisticsChart = ({ instructors, categories, courses }) => {
     return (
         <div className="bg-white shadow-[0_6px_20px_rgba(0,0,0,0.08)] rounded-2xl p-5 h-full">
             <h3 className="text-lg font-semibold text-gray-700 text-start">Statistics</h3>
-            <ResponsiveContainer width="100%" height={150}>
-                <PieChart>
-                    <Pie
-                        data={data}
-                        dataKey="value"
-                        nameKey="name"
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={70}
-                        startAngle={90}
-                        endAngle={-270}
-                        stroke="none"
-                    >
-                        {data.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                    </Pie>
-                </PieChart>
-            </ResponsiveContainer>
+            <div
+                style={{
+                    outline: "none",
+                }}
+                tabIndex={-1} // makes it non-focusable by keyboard/tab
+            >
+                <ResponsiveContainer width="100%" height={150}>
+                    <PieChart className="[&_*]:outline-none">
+                        <Pie
+                            data={data}
+                            dataKey="value"
+                            nameKey="name"
+                            cx="50%"
+                            cy="50%"
+                            outerRadius={70}
+                            startAngle={90}
+                            endAngle={-270}
+                            stroke="none"
+
+                        >
+                            {data.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            ))}
+                        </Pie>
+                    </PieChart>
+                </ResponsiveContainer>
+            </div>
+
             <div className='flex bg-white shadow-lg items-center justify-between text-start rounded-2xl p-2 mt-2'>
                 {data.map((element, index) => (
                     <div key={index} className='flex items-baseline gap-1'>

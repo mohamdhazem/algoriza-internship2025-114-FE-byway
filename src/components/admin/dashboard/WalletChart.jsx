@@ -60,7 +60,7 @@ export default function WalletCard() {
                 </span>
             </div>
 
-            {/* Content Row (2 columns) */}
+            {/* Content Row */}
             <div className="grid sm:grid-cols-7">
                 {/* Left */}
                 <div className="col-span-2 flex flex-col text-start">
@@ -100,7 +100,7 @@ export default function WalletCard() {
                 {/* Right */}
                 <div className="col-span-5 h-48 flex items-center">
                     <ResponsiveContainer width="100%" height="100%">
-                        <LineChart data={data}>
+                        <LineChart data={data} className="[&_*]:outline-none">
                             {/* Show months only at the bottom */}
                             <XAxis
                                 dataKey="month"

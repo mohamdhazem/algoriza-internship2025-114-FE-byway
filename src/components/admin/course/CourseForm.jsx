@@ -155,8 +155,8 @@ export const CourseForm = ({ mode, courseId }) => {
             if (!c.lecturesNumber || isNaN(c.lecturesNumber)) {
                 newErrors[`content-lectures-${i}`] = "Lectures number must be a number";
             }
-            if (!c.time?.trim()) {
-                newErrors[`content-time-${i}`] = "Time is required";
+            if (!c.time?.trim() || isNaN(c.time?.trim())) {
+                newErrors[`content-time-${i}`] = "Time must be a number";
             }
         });
 
@@ -214,15 +214,11 @@ export const CourseForm = ({ mode, courseId }) => {
             return;
         }
 
-        // Transform raw times to HH:MM:SS before sending
-        const preparedContents = formData.contents.map(c => {
-            let hours = parseInt(c.time || "0", 10);
-            if (isNaN(hours)) hours = 0;
-            return {
-                ...c,
-                time: `${hours.toString().padStart(2, "0")}:00:00`
-            };
-        });
+        const preparedContents = formData.contents.map(c => ({
+            ...c,
+            time: parseInt(c.time || "0", 10) // keep it as int
+        }));
+
 
         try {
             const fd = buildFormData({
@@ -262,7 +258,7 @@ export const CourseForm = ({ mode, courseId }) => {
             {step < 2 && (
                 <div className="flex flex-col gap-4.5 items-start rounded-2xl">
                     <div className="flex justify-start items-center gap-2">
-                        <h2 className="font-medium text-2xl text-[#202637]">Add Course</h2>
+                        <h2 className="font-medium text-2xl text-[#202637]">{mode === "add" ? " Add Course" : "Update Course"}</h2>
                         <h5 className="text-sm text-[#626C83]">Step 1 of 2</h5>
                     </div>
                     <div>
@@ -466,7 +462,7 @@ export const CourseForm = ({ mode, courseId }) => {
                         <button className="cursor-pointer" onClick={prevStep}>
                             <ArrowLeft size={18}></ArrowLeft>
                         </button>
-                        <h2 className="font-medium text-2xl text-[#202637] pl-1.5">Add Course</h2>
+                        <h2 className="font-medium text-2xl text-[#202637] pl-1.5">{mode === "add" ? " Add Course" : "Update Course"}</h2>
                         <h5 className="text-sm text-[#626C83]">Step 1 of 2</h5>
                     </div>
                     <div className="flex items-center justify-start">
@@ -518,8 +514,8 @@ export const CourseForm = ({ mode, courseId }) => {
                                             type="text"
                                             id={`time-${index}`}
                                             name="time"
-                                            value={item.time.split(":")[0] || ""}
-                                            onChange={(e) => handleContentChange(index, e)}
+                                            value={item.time || ""}
+                                             onChange={(e) => handleContentChange(index, e)}
                                             disabled={inputMode}
                                             placeholder="Enter hours"
                                             className="input-style"

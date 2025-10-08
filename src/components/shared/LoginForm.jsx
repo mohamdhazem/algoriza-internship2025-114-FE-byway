@@ -20,7 +20,7 @@ export const LoginForm = ({ role }) => {
 
     // Login if token was saved before
     useEffect(() => {
-        if (isLoggedIn() && getUserRole().toLowerCase() === "admin")
+        if (isLoggedIn() && role === "admin" && getUserRole().toLowerCase() === "admin")
             navigate("/dashboard");
     }, [])
 

@@ -254,7 +254,7 @@ export const CourseDetailsContent = ({ id }) => {
                             <h3 className="text-sm md:text-[18px]">{item.name}</h3>
                             <div className="flex justify-end gap-4">
                                 <p className="text-sm">{item.lecturesNumber} Lectures</p>
-                                <p className="text-sm">{item.time.split(":")[0]} Hours</p>
+                                <p className="text-sm">{item.time} Hours</p>
                             </div>
                         </div>
                     ))}
