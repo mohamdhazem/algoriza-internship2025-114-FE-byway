@@ -6,8 +6,8 @@ import { showError } from "../../../utils/popup";
 
 // static data
 const staticData = {
-    deposits: [1400, 600, 800, 1500],
-    withdrawals: [1100, 500, 600, 1300],
+    deposits: [5000, 3000, 2500, 6000],
+    withdrawals: [3500, 1000, 1500, 2500],
 };
 
 const allMonths = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -36,7 +36,7 @@ export default function WalletCard() {
             const month = allMonths[monthIndex];
 
             if (i === 0) {
-                result.push({ month, deposits: currentMonthDeposit, withdrawals: currentMonthDeposit - 300 });
+                result.push({ month, deposits: currentMonthDeposit, withdrawals: currentMonthDeposit - currentMonthDeposit * 30 / 100 });
             } else {
                 const staticIndex = i < 0 ? i + 2 : i + 1;
                 result.push({
