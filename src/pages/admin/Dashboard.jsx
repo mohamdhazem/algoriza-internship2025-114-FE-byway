@@ -7,6 +7,7 @@ import WalletChart from "../../components/admin/dashboard/WalletChart"
 import { useEffect, useState } from "react"
 import api from "../../api"
 import { atomWithStorage } from "jotai/utils"
+import { MobileNav } from "../../components/admin/dashboard/MobileNav"
 
 export const clickedPageAtom = atomWithStorage("clickedPage", "dashboard");
 
@@ -27,19 +28,38 @@ export const Dashboard = () => {
     }, [])
 
     return (
-        <div className="grid grid-cols-5 h-screen">
-            <div className="col-span-1 h-full w-full">
-                <DashboardNav></DashboardNav>
+        <div className="grid grid-cols-1 lg:grid-cols-5 min-h-screen">
+            {/* Sidebar */}
+            <div className="hidden lg:block col-span-1 h-full w-full">
+                <DashboardNav />
             </div>
-            <div className="col-span-4 px-10 py-5 bg-custom-gray">
-                <DashboardHeader></DashboardHeader>
-                <hr className="text-gray-200 my-8" />
-                <DashboardCards instructorsNumber={instructorsNumber} categoriesNumber={categoriesNumber} coursesNumber={coursesNumber}></DashboardCards>
-                <div className="grid grid-cols-5 my-10">
-                    <div className="col-span-3 mr-8">
-                        <WalletChart></WalletChart>
+
+            <div className="flex lg:hidden w-full h-20">
+                <MobileNav />
+            </div>
+
+            {/* Main Content */}
+            <div className="col-span-4 px-4 sm:px-6 md:px-8 lg:px-10 py-5 bg-custom-gray">
+                <DashboardHeader />
+
+                <hr className="text-gray-200 my-6 md:my-8" />
+
+                {/* Cards Section */}
+                <div className="mb-8">
+                    <DashboardCards
+                        instructorsNumber={instructorsNumber}
+                        categoriesNumber={categoriesNumber}
+                        coursesNumber={coursesNumber}
+                    />
+                </div>
+
+                {/* Charts Section */}
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 my-6">
+                    <div className="col-span-1 lg:col-span-3">
+                        <WalletChart />
                     </div>
-                    <div className="col-span-2 h-full">
+
+                    <div className="col-span-1 lg:col-span-2">
                         <StatisticsChart
                             instructors={instructorsNumber}
                             categories={categoriesNumber}
@@ -49,5 +69,6 @@ export const Dashboard = () => {
                 </div>
             </div>
         </div>
-    )
+    );
+
 }

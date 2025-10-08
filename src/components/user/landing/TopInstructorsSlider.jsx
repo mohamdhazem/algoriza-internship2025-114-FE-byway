@@ -87,7 +87,7 @@ export const TopInstructorsSlider = ({ topInstructors }) => {
             {/* Header */}
             <div className="flex justify-between items-center">
                 <h2 className="font-semibold text-[18px] sm:text-xl md:text-2xl">Top Instructors</h2>
-                <div className="hidden md:flex justify-between gap-5 w-30">
+                <div className="hidden lg:flex justify-between gap-5 w-30">
                     <button
                         onClick={handlePrev}
                         disabled={startIndex === 0}

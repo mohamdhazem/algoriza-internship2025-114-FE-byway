@@ -36,7 +36,7 @@ export const CourseCard = ({ course, role = "admin" }) => {
 
             {/* Content */}
             <div className="flex flex-col gap-3 flex-grow justify-between items-start w-full mt-4 font-inter text-start">
-                <h3 className="font-semibold text-lg text-[#0F172A] truncate w-full max-w-[250px]">
+                <h3 className="font-semibold text-lg text-[#0F172A] truncate w-full">
                     {course.name}
                 </h3>
                 <h5 className="text-sm text-[#334155] -my-2">By {course.instructorName}</h5>

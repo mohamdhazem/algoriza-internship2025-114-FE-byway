@@ -90,20 +90,26 @@ export const CourseDetailsContent = ({ id }) => {
                     <p className="text-[#2563EB] text-sm sm:text-[16px] truncate sm:max-w-[250px]">{courseDetails?.name}</p>
                 </div>
                 <h1 className="text-3xl lg:text-[40px] sm:py-2">{courseDetails?.name}</h1>
-                <p className="text-sm sm:text-[17px] md:max-w-100 xl:max-w-180">
-                    {courseDetails?.description}
-                </p>
-                <div className="flex justify-start items-center sm:gap-1.5">
-                    <p className="text-[#FEC84B] sm:pt-1 text-[14px] sm:text-[16px]">
-                        {courseDetails?.rate}
-                    </p>
-                    <RateDisplay
-                        value={Math.round(courseDetails?.rate ?? 0)}
-                    />
-                    <div className="w-[1px] bg-gray-700 h-4 mx-1"></div>
-                    <p className="text-[12px] sm:text-[16px]">
-                        {courseDetails?.totalHours} Total Hours. {courseDetails?.totalLectures} Lectures. {getEnumLabel(LevelEnum, courseDetails?.level)}
-                    </p>
+                <div className="text-sm sm:text-[17px] md:max-w-100 xl:max-w-180 text-gray-700"
+                    dangerouslySetInnerHTML={{ __html: courseDetails?.description }}
+                />
+                <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:justify-start sm:items-center">
+                    <div className="flex gap-1.5">
+                        <p className="text-[#FEC84B] pt-1 sm:pt-1 text-[14px] sm:text-[16px]">
+                            {courseDetails?.rate}
+                        </p>
+                        <RateDisplay
+                            value={Math.round(courseDetails?.rate ?? 0)}
+                        />
+                    </div>
+
+                    <div className="w-[1px] bg-gray-700 h-4 mx-1 hidden sm:block"></div>
+                    <div className="flex">
+                        <p className="text-[12px] sm:text-[16px]">
+                            {courseDetails?.totalHours} Total Hours. {courseDetails?.totalLectures} Lectures. {getEnumLabel(LevelEnum, courseDetails?.level)}
+                        </p>
+                    </div>
+
                 </div>
                 <div className="flex justify-start items-center gap-2 text-sm text-gray-700">
                     <img
@@ -155,24 +161,24 @@ export const CourseDetailsContent = ({ id }) => {
             </div>
 
             {/* buttons */}
-            <div className="px-5 md:px-10 lg:px-20 pt-10 pb-5 flex justify-start gap-1 sm:gap-3 md:gap-5">
-                <a href="#description" className="px-2 sm:px-6 py-3 border border-[#E2E8F0] rounded-md bg-[#EFF6FF] cursor-pointer">
-                    <p className="text-sm">
+            <div className="px-5 md:px-10 lg:px-20 pt-10 pb-5 flex justify-start gap-2 sm:gap-3 md:gap-5">
+                <a href="#description" className="sm:w-fit sm:px-6 py-3 border border-[#E2E8F0] rounded-md bg-[#EFF6FF] cursor-pointer">
+                    <p className="text-[13px] sm:text-sm truncate">
                         Description
                     </p>
                 </a>
-                <a href="#instructor" className="px-2 sm:px-6 py-3 border border-[#E2E8F0] rounded-md hover:bg-[#EFF6FF] cursor-pointer">
-                    <p className="text-sm">
+                <a href="#instructor" className="sm:w-fit px-2 sm:px-6 py-3 border border-[#E2E8F0] rounded-md hover:bg-[#EFF6FF] cursor-pointer">
+                    <p className="text-[13px] sm:text-sm truncate">
                         Instructor
                     </p>
                 </a>
-                <a href="#content" className="px-2 sm:px-6 py-3 border border-[#E2E8F0] rounded-md hover:bg-[#EFF6FF] cursor-pointer">
-                    <p className="text-sm">
+                <a href="#content" className="sm:w-fit px-2 sm:px-6 py-3 border border-[#E2E8F0] rounded-md hover:bg-[#EFF6FF] cursor-pointer">
+                    <p className="text-[13px] sm:text-sm truncate">
                         Content
                     </p>
                 </a>
-                <a href="#reviews" className="px-2 sm:px-6 py-3 border border-[#E2E8F0] rounded-md hover:bg-[#EFF6FF] cursor-pointer">
-                    <p className="text-sm">
+                <a href="#reviews" className="sm:w-fit px-2 sm:px-6 py-3 border border-[#E2E8F0] rounded-md hover:bg-[#EFF6FF] cursor-pointer">
+                    <p className="text-[13px] sm:text-sm truncate">
                         Reviews
                     </p>
                 </a>
@@ -186,9 +192,13 @@ export const CourseDetailsContent = ({ id }) => {
                 className="px-5 md:px-10 lg:px-20 py-4 max-w-210 text-start"
             >
                 <h4 className="mt-2">Course Description</h4>
-                <p className="mt-1.5 text-[15px] text-gray-700">{courseDetails?.description}</p>
+                <div className="mt-1.5 text-[15px] text-gray-700"
+                    dangerouslySetInnerHTML={{ __html: courseDetails?.description }}
+                />
                 <h4 className="mt-4">Certification</h4>
-                <p className="mt-1.5 text-[15px] text-gray-700">{courseDetails?.certification}</p>
+                <div className="mt-1.5 text-[15px] text-gray-700"
+                    dangerouslySetInnerHTML={{ __html: courseDetails?.certification }}
+                />
             </div>
 
             <div className="ml-20 mr-150 h-[1px] bg-[#E2E8F0]"></div>
@@ -242,7 +252,7 @@ export const CourseDetailsContent = ({ id }) => {
                                 }`}
                         >
                             <h3 className="text-sm md:text-[18px]">{item.name}</h3>
-                            <div className="flex justify-end gap-4 w-48">
+                            <div className="flex justify-end gap-4">
                                 <p className="text-sm">{item.lecturesNumber} Lectures</p>
                                 <p className="text-sm">{item.time.split(":")[0]} Hours</p>
                             </div>

@@ -37,25 +37,7 @@ export const CoursesSearch = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        api.get("/Course/ForUser", {
-            params: {
-                pageIndex: pageIndex,
-                Rate: rate,
-                MinLecturesNumber: minLecturesNumber,
-                MaxLecturesNumber: maxLecturesNumber,
-                MinPrice: minPrice,
-                MaxPrice: maxPrice,
-                CategoriesIds: categoriesIds,
-                SortType: sortType,
-                Search: search
-            }
-        })
-            .then(res => {
-                setCourses(res.data.data);
-                setCount(res.data.count);
-                console.log(res.data);
-            })
-            .catch(err => console.error("Error fetching courses", err));
+        fetchCourses();
 
     }, [pageIndex, sortType, search]);
 
@@ -73,8 +55,7 @@ export const CoursesSearch = () => {
                 maxLecturesNumber: fMaxLectures = maxLecturesNumber,
                 minPrice: fMinPrice = minPrice,
                 maxPrice: fMaxPrice = maxPrice,
-                categoriesIds: fCategories = categoriesIds,
-                sortType: fSortType = sortType,
+                categoriesIds: fCategories = categoriesIds
             } = filters || {};
 
             query.append("PageIndex", pageIndex);
@@ -83,7 +64,7 @@ export const CoursesSearch = () => {
             if (fMaxLectures !== null) query.append("MaxLecturesNumber", fMaxLectures);
             if (fMinPrice !== null) query.append("MinPrice", fMinPrice);
             if (fMaxPrice !== null) query.append("MaxPrice", fMaxPrice);
-            if (fSortType) query.append("SortType", fSortType);
+            if (sortType !== null) query.append("SortType", sortType);
             if (search) query.append("Search", search.toLowerCase());
 
             fCategories.forEach(id => query.append("CategoriesIds", id));
@@ -217,24 +198,17 @@ export const CoursesSearch = () => {
                 </div>
 
                 {/* Courses Section */}
-                <div className="lg:col-span-3 py-2 lg:pl-10">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="relative lg:col-span-3 py-2 lg:pl-10 flex flex-col min-h-[80vh]">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 flex-grow">
                         {loading ? (
                             <p className="col-span-full text-center text-gray-400 text-lg font-medium pt-20">
                                 Loading...
                             </p>
                         ) : courses && courses.length > 0 ? (
                             <>
-                                {courses.map((course, index) => (
-                                    <CourseCard key={index} course={course} role="user" />
+                                {courses.map((course) => (
+                                    <CourseCard key={course.id} course={course} role="user" />
                                 ))}
-                                <div className="col-span-full flex justify-center mt-4">
-                                    <Pagination
-                                        pageIndex={pageIndex}
-                                        totalPages={totalPages}
-                                        onPageChange={setPageIndex}
-                                    />
-                                </div>
                             </>
                         ) : (
                             <p className="col-span-full text-center text-gray-500 text-lg font-medium pt-20">
@@ -242,7 +216,16 @@ export const CoursesSearch = () => {
                             </p>
                         )}
                     </div>
+
+                    <div className="mt-auto pt-2 pb-8 flex justify-center">
+                        <Pagination
+                            pageIndex={pageIndex}
+                            totalPages={totalPages}
+                            onPageChange={setPageIndex}
+                        />
+                    </div>
                 </div>
+
             </div>
 
             {/* Mobile Filter */}

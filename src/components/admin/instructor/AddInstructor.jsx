@@ -20,20 +20,32 @@ export const AddInstructor = ({ setShowForm }) => {
 
     const [errors, setErrors] = useState({});
 
-    // Handle input changes
+    // Handle text input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
+
+        // Clear error for this field as user types
+        if (errors[name]) {
+            setErrors((prev) => {
+                const updated = { ...prev };
+                delete updated[name];
+                return updated;
+            });
+        }
     };
 
+    // Handle file upload
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
-        // Maximum file size in bytes (2MB)
-        const MAX_SIZE = 2 * 1024 * 1024;
+        const MAX_SIZE = 2 * 1024 * 1024; // 2MB
         if (file.size > MAX_SIZE) {
-            showError("File size should not exceed 2MB");
+            setErrors((prev) => ({
+                ...prev,
+                image: "File size should not exceed 2MB"
+            }));
             return;
         }
 
@@ -43,37 +55,58 @@ export const AddInstructor = ({ setShowForm }) => {
         img.onload = () => {
             const { width, height } = img;
 
-            // Restrict dimensions (example: 600x600 pixels)
-            if (width > 600 || height > 600) {
-                showError("Image dimensions should not exceed 600x600 pixels");
-                URL.revokeObjectURL(img.src); // free memory
+            if (width > 1000 || height > 1000) {
+                setErrors((prev) => ({
+                    ...prev,
+                    image: "Image should be less than 1000*1000 pixels"
+                }));
+                URL.revokeObjectURL(img.src);
                 return;
             }
 
-            // Valid file — update state
+            // Clear previous image error
+            setErrors((prev) => {
+                const updated = { ...prev };
+                delete updated.image;
+                return updated;
+            });
+
+            // Valid file
             setFormData((prev) => ({
                 ...prev,
                 PictureFile: file,
-                imageUrl: img.src, // blob URL for preview
+                imageUrl: img.src
             }));
         };
 
         img.onerror = () => {
-            showError("Invalid image file");
+            setErrors((prev) => ({
+                ...prev,
+                image: "Invalid image file"
+            }));
         };
     };
 
-
-    // Handle rating change from RateInput
+    // Handle rating change
     const handleRateChange = (rate) => {
         setFormData((prev) => ({ ...prev, rate }));
+
+        if (errors.rate) {
+            setErrors((prev) => {
+                const updated = { ...prev };
+                delete updated.rate;
+                return updated;
+            });
+        }
     };
 
-    // Validation
+    // Validation before submit
     const validate = () => {
-        let newErrors = {};
+        const newErrors = {};
+
         if (!formData.name.trim()) newErrors.name = "Name is required";
         if (formData.jobTitle === null) newErrors.jobTitle = "Job Title is required";
+        if (!formData.PictureFile) newErrors.image = "Image is required";
         if (formData.rate === 0) newErrors.rate = "Rate is required";
         if (!formData.description.trim())
             newErrors.description = "Description is required";
@@ -82,45 +115,39 @@ export const AddInstructor = ({ setShowForm }) => {
         return Object.keys(newErrors).length === 0;
     };
 
+    // Handle submit
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validate()) return;
 
         try {
-
             const data = new FormData();
             data.append("name", formData.name);
             data.append("jobTitle", formData.jobTitle);
             data.append("description", formData.description);
             data.append("rate", formData.rate);
+            if (formData.PictureFile) data.append("PictureFile", formData.PictureFile);
 
-            if (formData.PictureFile) {
-                data.append("PictureFile", formData.PictureFile);
-            }
-
-            const response = await api.post(`/Instructor`, formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
+            const response = await api.post(`/Instructor`, data, {
+                headers: { "Content-Type": "multipart/form-data" },
             });
 
-            showSuccess("Instructor Added successfully");
+            showSuccess("Instructor added successfully");
             setShowForm(false);
-
         } catch (error) {
-            showError(error);
+            showError("Something went wrong while adding the instructor.");
             console.error("Error:", error);
         }
     };
 
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-10">
-            <div className="bg-white p-6 rounded-lg w-150">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-100 overflow-auto">
+            <div className="bg-white p-6 rounded-lg w-full sm:w-150">
                 {/* Header */}
                 <div className="flex justify-between items-center">
                     <h2 className="text-xl font-semibold">Add Instructor</h2>
-                    <button 
+                    <button
                         className="cursor-pointer"
                         onClick={() => setShowForm(false)}>
                         <XIcon />
@@ -157,6 +184,7 @@ export const AddInstructor = ({ setShowForm }) => {
                             <CameraIcon size={21} />
                         </span>
                     </div>
+                    {errors.image && <p className="text-red-500 text-xs flex justify-start -mt-7">{errors.image}</p>}
 
                     {/* Name */}
                     <div className="flex flex-col items-start">
@@ -176,7 +204,7 @@ export const AddInstructor = ({ setShowForm }) => {
                     </div>
 
                     {/* Job Title & Rate */}
-                    <div className="flex gap-6 w-full">
+                    <div className="flex flex-col sm:flex-row gap-6 w-full">
                         {/* Job Title */}
                         <div className="flex flex-col flex-1 items-start">
                             <label
@@ -230,13 +258,13 @@ export const AddInstructor = ({ setShowForm }) => {
                         <button
                             type="cancel"
                             onClick={() => setShowForm(false)}
-                            className="col-span-1 bg-[#EDEDED] text-[#8C8C8C] px-4 py-3 rounded-lg cursor-pointer"
+                            className="col-span-2 sm:col-span-1 bg-[#EDEDED] text-[#8C8C8C] px-4 py-3 rounded-lg cursor-pointer"
                         >
                             Cancel
                         </button>
                         <button
                             type="submit"
-                            className="col-span-4 bg-[#020617] text-white px-4 py-3 rounded-lg cursor-pointer"
+                            className="col-span-3 sm:col-span-4 bg-[#020617] text-white px-4 py-3 rounded-lg cursor-pointer"
                         >
                             Save Instructor
                         </button>

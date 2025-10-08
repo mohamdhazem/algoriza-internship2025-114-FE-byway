@@ -15,9 +15,9 @@ import ScrollToTop from './helpers/ScrollToTop'
 import { ShoppingCart } from './pages/user/ShoppingCart'
 import { Checkout } from './pages/user/Checkout'
 import { CompletedOrder } from './pages/user/CompletedOrder'
-import { AuthCallback } from './components/user/login/Auth-Callback'
 import { SignUp } from './pages/user/SignUp'
 import { Callback } from './components/user/login/Callback'
+import FailedLogin from './components/user/login/FailedLogin'
 
 
 function App() {
@@ -36,6 +36,8 @@ function App() {
           <Route path="/CourseDetails/:id" element={<CourseDetails></CourseDetails>}></Route>
 
           <Route path="/auth-callback" element={<Callback></Callback>}></Route>
+          <Route path="/microsoft-failed-login" element={<FailedLogin provider={"Microsoft"}/>}></Route>
+          <Route path="/google-failed-login" element={<FailedLogin provider={"Google"}/>}></Route>
 
           <Route element={<ProtectedRoute allowedRoles={["User"]} />}>
             <Route path="/Cart" element={<ShoppingCart></ShoppingCart>}></Route>

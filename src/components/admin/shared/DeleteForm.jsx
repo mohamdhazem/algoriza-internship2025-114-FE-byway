@@ -43,7 +43,7 @@ export const DeleteForm = ({ setShowDeleteForm, entity, entityName }) => {
                 <div className="flex items-center justify-center py-3 mt-6">
                     <div className="flex items-center justify-center rounded-full bg-[#ffdfdf] outline-12 outline-[#fdeded] w-18 h-18">
                         <img
-                            src="{`${import.meta.env.BASE_URL}icons/social/google.svg`}icons/deleteTrash.svg"
+                            src={`${import.meta.env.BASE_URL}icons/deleteTrash.svg`}
                             className="w-13 h-13"
                             alt=""
                         />

@@ -4,13 +4,12 @@ import { useEffect, useState } from "react";
 import api from "../../../api";
 import { showError } from "../../../utils/popup";
 
-// static example data for other months
+// static data
 const staticData = {
-    deposits: [1400, 600, 800, 1500], // sample static deposits
-    withdrawals: [1100, 500, 600, 1300], // sample static withdrawals
+    deposits: [1400, 600, 800, 1500],
+    withdrawals: [1100, 500, 600, 1300],
 };
 
-// all months in order
 const allMonths = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 
 export default function WalletCard() {
@@ -33,15 +32,13 @@ export default function WalletCard() {
         const result = [];
 
         for (let i = -2; i <= 2; i++) {
-            const monthIndex = (currentMonthIndex + i + 12) % 12; // wrap around year
+            const monthIndex = (currentMonthIndex + i + 12) % 12;
             const month = allMonths[monthIndex];
 
             if (i === 0) {
-                // current month → value from API
-                result.push({ month, deposits: currentMonthDeposit, withdrawals: currentMonthDeposit - 300 }); // withdrawals static
+                result.push({ month, deposits: currentMonthDeposit, withdrawals: currentMonthDeposit - 300 });
             } else {
-                // other months → static values
-                const staticIndex = i < 0 ? i + 2 : i + 1; // map -2,-1,1,2 to staticData index
+                const staticIndex = i < 0 ? i + 2 : i + 1;
                 result.push({
                     month,
                     deposits: staticData.deposits[staticIndex],
@@ -54,7 +51,7 @@ export default function WalletCard() {
     }, [currentMonthDeposit]);
 
     return (
-        <div className="bg-white shadow-md rounded-2xl p-5 grid grid-rows-[auto,1fr] gap-5">
+        <div className="bg-white shadow-md rounded-2xl py-5 px-3 sm:p-5 grid grid-rows-[auto,1fr] gap-5">
             {/* Header Row */}
             <div className="flex justify-between items-center">
                 <h3 className="text-[#202637] text-lg font-semibold">Wallet</h3>
@@ -64,14 +61,14 @@ export default function WalletCard() {
             </div>
 
             {/* Content Row (2 columns) */}
-            <div className="grid grid-cols-7">
-                {/* Left (Details) */}
+            <div className="grid sm:grid-cols-7">
+                {/* Left */}
                 <div className="col-span-2 flex flex-col text-start">
                     <div>
                         <p className="text-3xl font-bold text-[#2B3674]">
                             ${(currentMonthDeposit / 1000).toFixed(1) + "K"}
                         </p>
-                        <p className="flex gap-1 text-sm text-gray-500 mt-1">
+                        <p className="flex gap-1 text-[13px] text-gray-500 mt-1">
                             Wallet Balance
                             <span className="flex items-center text-[#05CD99] text-sm font-semibold">
                                 <span className="pr-0.5">
@@ -100,7 +97,7 @@ export default function WalletCard() {
                     </div>
                 </div>
 
-                {/* Right (Chart) */}
+                {/* Right */}
                 <div className="col-span-5 h-48 flex items-center">
                     <ResponsiveContainer width="100%" height="100%">
                         <LineChart data={data}>
@@ -180,10 +177,10 @@ export default function WalletCard() {
                                                 {/* Triangle pointer */}
                                                 <polygon
                                                     points={`
-                       ${cx - pointerSize},${cy - 10 - pointerSize}
-                       ${cx + pointerSize},${cy - 10 - pointerSize}
-                       ${cx},${cy - 10}
-                    `}
+                                                        ${cx - pointerSize},${cy - 10 - pointerSize}
+                                                        ${cx + pointerSize},${cy - 10 - pointerSize}
+                                                        ${cx},${cy - 10}
+                                                    `}
                                                     className="fill-[#4318FF]"
                                                 />
 
@@ -200,14 +197,9 @@ export default function WalletCard() {
                                             </>
                                         );
                                     }
-
                                     return null;
                                 }}
-
-
                             />
-
-
                             <Line
                                 type="monotone"
                                 dataKey="withdrawals"

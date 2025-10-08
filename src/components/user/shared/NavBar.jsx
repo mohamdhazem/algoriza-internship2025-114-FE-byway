@@ -5,7 +5,7 @@ import { courseSearchAtom } from "../../../store/courseSearchAtom"
 import { getUserRole, isLoggedIn, logout } from "../../../auth"
 import { LoggedIn, userAtom } from "../../../store/userAtom"
 import { useEffect, useState } from "react"
-import { cartCoursesCountAtom } from "../../../store/cartAtom"
+import { cartCoursesCountAtom, refreshCartCoursesCountAtom } from "../../../store/cartAtom"
 
 export const NavBar = () => {
     const [search, setSearch] = useAtom(courseSearchAtom);
@@ -16,13 +16,18 @@ export const NavBar = () => {
 
     const cartCoursesCount = useAtomValue(cartCoursesCountAtom);
 
-    // const isLoggedIn = useAtomValue(LoggedIn);
+    const [, refreshCartCount] = useAtom(refreshCartCoursesCountAtom);
 
     const handleLogout = () => {
         logout();
         setUser(null);
         navigate("/userlogin");
     }
+
+    useEffect(() => {
+        if (isLoggedIn() && getUserRole().toLowerCase() === "user")
+            refreshCartCount();
+    }, [])
 
     return (
         <div
@@ -31,7 +36,7 @@ export const NavBar = () => {
         >
             <Link to="/Landing" className="flex items-center sm:pr-6 md:pr-17">
                 <img
-                    src= {`${import.meta.env.BASE_URL}icons/37c5de785384c3fafe195a0ef1d99825e88d3fdf.png`}
+                    src={`${import.meta.env.BASE_URL}icons/37c5de785384c3fafe195a0ef1d99825e88d3fdf.png`}
                     alt="logo"
                     className="h-8 w-full md:h-10 md:w-10"
                 />

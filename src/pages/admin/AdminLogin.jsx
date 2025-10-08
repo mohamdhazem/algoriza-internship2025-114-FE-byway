@@ -4,7 +4,7 @@ import { LoginForm } from "../../components/shared/LoginForm"
 
 export const AdminLogin = () => {
     return (
-        <div className="h-screen overflow-hidden">
+        <div className="h-screen overflow-x-hidden">
             <main>
                 <NavBar></NavBar>
                 <hr className="text-gray-200" />

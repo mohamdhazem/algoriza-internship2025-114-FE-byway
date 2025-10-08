@@ -12,6 +12,8 @@ export const PaymentDetails = () => {
     const [cart, setCart] = useState(null);
     const [errors, setErrors] = useState({});
     const [, refreshCartCount] = useAtom(refreshCartCoursesCountAtom);
+    const [loading, setLoading] = useState(false);
+
 
     const navigate = useNavigate();
 
@@ -72,6 +74,7 @@ export const PaymentDetails = () => {
 
     const handleSubmit = async () => {
         if (!validateForm()) return;
+        setLoading(true);
 
         try {
             // split expiry MM/YY
@@ -93,12 +96,14 @@ export const PaymentDetails = () => {
 
             const res = await api.post("/order", orderDto);
             console.log("Order submitted:", res.data);
-            refreshCartCount();
             navigate("/PurchaseComplete");
+            refreshCartCount();
         } catch (err) {
             console.error("Order failed:", err.response?.data || err.message);
             showError(err.response?.data?.message || "Failed to place order");
         }
+
+        setLoading(false);
     };
 
     return (
@@ -115,141 +120,150 @@ export const PaymentDetails = () => {
             </div>
 
             {/* Main container */}
-            <div className="flex flex-col lg:flex-row justify-between gap-6">
-
-                {/* Payment section */}
-                <div className="flex flex-col p-3 border border-gray-200 rounded-xl w-full lg:w-[65%]">
-
-                    <div className="flex flex-row justify-between gap-2 text-start pl-0 sm:pl-3">
-                        <div className="flex flex-col gap-1.5 sm:w-1/2">
-                            <label htmlFor="country" className="text-sm sm:text-lg font-semibold text-gray-900">Country</label>
-                            <input
-                                type="text"
-                                name="country"
-                                value={formData.country}
-                                onChange={handleChange}
-                                placeholder="Enter Country"
-                                className="border border-gray-200 rounded-lg py-1.5 sm:py-2.5 pl-4 text-[20px] placeholder:text-[#94A3B8] placeholder:text-sm sm:placeholder:text-[16px] text-gray-900 outline-none focus:ring-0 focus:border-gray-300 w-full"
-                            />
-                            {errors.country && <p className="text-red-500 text-sm">{errors.country}</p>}
-                        </div>
-                        <div className="flex flex-col gap-1.5 sm:w-1/2 sm:mt-0">
-                            <label htmlFor="state" className="text-sm sm:text-lg font-semibold text-gray-900 truncate">State/Union Territory</label>
-                            <input
-                                type="text"
-                                name="state"
-                                value={formData.state}
-                                onChange={handleChange}
-                                placeholder="Enter State"
-                                className="border border-gray-200 rounded-lg py-1.5 sm:py-2.5 pl-4 text-[20px] placeholder:text-[#94A3B8] placeholder:text-sm sm:placeholder:text-[16px] text-gray-900 outline-none focus:ring-0 focus:border-gray-300 w-full"
-                            />
-                            {errors.state && <p className="text-red-500 text-sm">{errors.state}</p>}
-                        </div>
+            <div>
+                {loading ? (
+                    <div className="flex justify-center items-center w-full py-40">
+                        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-gray-900 border-solid"></div>
                     </div>
+                ) : (
+                    <div className="flex flex-col lg:flex-row justify-between gap-6">
+                        {/* Payment section */}
+                        <div className="flex flex-col p-3 border border-gray-200 rounded-xl w-full lg:w-[65%]">
 
-                    {/* Payment Method */}
-                    <h5 className="text-gray-900 mt-8 sm:mt-4 mb-2 text-start">Payment Method</h5>
-                    <div className="flex flex-col bg-[#F8FAFC] rounded-lg p-3 gap-4">
-                        {/* Credit Card */}
-                        <div className="flex flex-row justify-between items-center sm:items-center gap-3 sm:gap-0">
-                            <label className="flex items-center gap-2 cursor-pointer sm:text-lg font-semibold">
-                                <input type="radio" name="payment" className="w-4.5 h-4.5 sm:w-6 sm:h-6 accent-blue-600" checked readOnly />
-                                Credit/Debit Card
-                            </label>
-                            <img src={`${import.meta.env.BASE_URL}icons/payment/visa.png`} alt="Card Icon" className="w-[72.5px] h-[28.5px]" />
-                        </div>
-
-                        <div className="flex flex-col gap-1 text-start">
-                            <label htmlFor="cardName" className="text-sm text-gray-900">Name of Card</label>
-                            <input
-                                type="text"
-                                name="cardName"
-                                value={formData.cardName}
-                                onChange={handleChange}
-                                placeholder="Name on Card"
-                                className="border border-gray-200 rounded-lg py-1.5 sm:py-2.5 pl-4 text-[20px] placeholder:text-[#94A3B8] placeholder:text-[16px] text-gray-900 bg-white outline-none focus:ring-0 focus:border-gray-300 w-full"
-                            />
-                            {errors.cardName && <p className="text-red-500 text-sm">{errors.cardName}</p>}
-
-                            <label htmlFor="cardNumber" className="text-sm text-gray-900 mt-3">Card Number</label>
-                            <input
-                                type="text"
-                                name="cardNumber"
-                                value={formData.cardNumber}
-                                onChange={handleChange}
-                                placeholder="Card Number"
-                                className="border border-gray-200 rounded-lg py-1.5 sm:py-2.5 pl-4 text-[20px] placeholder:text-[#94A3B8] placeholder:text-[16px] text-gray-900 bg-white outline-none focus:ring-0 focus:border-gray-300 w-full"
-                            />
-                            {errors.cardNumber && <p className="text-red-500 text-sm">{errors.cardNumber}</p>}
-
-                            <div className="flex flex-col sm:flex-row justify-between gap-2 mt-3">
-                                <div className="flex flex-col gap-1.5 w-full sm:w-1/2">
-                                    <label htmlFor="expiry" className="text-sm text-gray-900">Expiry Date</label>
+                            <div className="flex flex-row justify-between gap-2 text-start pl-0 sm:pl-3">
+                                <div className="flex flex-col gap-1.5 sm:w-1/2">
+                                    <label htmlFor="country" className="text-sm sm:text-lg font-semibold text-gray-900">Country</label>
                                     <input
                                         type="text"
-                                        name="expiry"
-                                        value={formData.expiry}
+                                        name="country"
+                                        value={formData.country}
                                         onChange={handleChange}
-                                        placeholder="MM/YY"
-                                        className="border border-gray-200 rounded-lg py-1.5 sm:py-2.5 pl-4 text-[20px] placeholder:text-[#94A3B8] placeholder:text-[16px] text-gray-900 bg-white outline-none focus:ring-0 focus:border-gray-300 w-full"
+                                        placeholder="Enter Country"
+                                        className="border border-gray-200 rounded-lg py-1.5 sm:py-2.5 pl-4 text-[20px] placeholder:text-[#94A3B8] placeholder:text-sm sm:placeholder:text-[16px] text-gray-900 outline-none focus:ring-0 focus:border-gray-300 w-full"
                                     />
-                                    {errors.expiry && <p className="text-red-500 text-sm">{errors.expiry}</p>}
+                                    {errors.country && <p className="text-red-500 text-sm">{errors.country}</p>}
                                 </div>
-                                <div className="flex flex-col gap-1.5 w-full sm:w-1/2 mt-3 sm:mt-0">
-                                    <label htmlFor="cvc" className="text-sm text-gray-900">CVC/CVV</label>
+                                <div className="flex flex-col gap-1.5 sm:w-1/2 sm:mt-0">
+                                    <label htmlFor="state" className="text-sm sm:text-lg font-semibold text-gray-900 truncate">State/Union Territory</label>
                                     <input
                                         type="text"
-                                        name="cvc"
-                                        value={formData.cvc}
+                                        name="state"
+                                        value={formData.state}
                                         onChange={handleChange}
-                                        placeholder="CVC/CVV"
-                                        className="border border-gray-200 rounded-lg py-1.5 sm:py-2.5 pl-4 text-[20px] placeholder:text-[#94A3B8] placeholder:text-[16px] text-gray-900 bg-white outline-none focus:ring-0 focus:border-gray-300 w-full"
+                                        placeholder="Enter State"
+                                        className="border border-gray-200 rounded-lg py-1.5 sm:py-2.5 pl-4 text-[20px] placeholder:text-[#94A3B8] placeholder:text-sm sm:placeholder:text-[16px] text-gray-900 outline-none focus:ring-0 focus:border-gray-300 w-full"
                                     />
-                                    {errors.cvc && <p className="text-red-500 text-sm">{errors.cvc}</p>}
+                                    {errors.state && <p className="text-red-500 text-sm">{errors.state}</p>}
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    {/* PayPal */}
-                    <div className="flex justify-between items-center bg-[#F8FAFC] mt-4 px-3 py-4">
-                        <label className="flex items-center gap-2 cursor-pointer sm:text-lg font-semibold">
-                            <input type="radio" name="payment" className="w-4.5 h-4.5 sm:w-6 sm:h-6" disabled />
-                            PayPal
-                        </label>
-                        <img src={`${import.meta.env.BASE_URL}icons/payment/paypal.png`} alt="Card Icon" className="w-[72.5px] h-[28.5px]" />
-                    </div>
-                </div>
+                            {/* Payment Method */}
+                            <h5 className="text-gray-900 mt-8 sm:mt-4 mb-2 text-start">Payment Method</h5>
+                            <div className="flex flex-col bg-[#F8FAFC] rounded-lg p-3 gap-4">
+                                {/* Credit Card */}
+                                <div className="flex flex-row justify-between items-center sm:items-center gap-3 sm:gap-0">
+                                    <label className="flex items-center gap-2 cursor-pointer sm:text-lg font-semibold">
+                                        <input type="radio" name="payment" className="w-4.5 h-4.5 sm:w-6 sm:h-6 accent-blue-600" checked readOnly />
+                                        Credit/Debit Card
+                                    </label>
+                                    <img src={`${import.meta.env.BASE_URL}icons/payment/visa.png`} alt="Card Icon" className="w-[72.5px] h-[28.5px]" />
+                                </div>
 
-                {/* Courses section */}
-                <div className="min-w-full sm:min-w-[32%] flex flex-col gap-2 mt-6 lg:mt-0 text-start">
-                    <h4>Order Details ({courses.length})</h4>
-                    <div className="flex flex-col gap-2 border border-gray-200 rounded-lg px-4 py-3 bg-[#F8FAFC]">
-                        {courses.map((c, index) => (
-                            <div key={index}>
-                                <h5 className="text-[#334155] font-medium truncate text-[16px] sm:text-lg">{c.name}</h5>
-                                {index < courses.length - 1 && <hr className="text-gray-200 mt-2" />}
+                                <div className="flex flex-col gap-1 text-start">
+                                    <label htmlFor="cardName" className="text-sm text-gray-900">Name of Card</label>
+                                    <input
+                                        type="text"
+                                        name="cardName"
+                                        value={formData.cardName}
+                                        onChange={handleChange}
+                                        placeholder="Name on Card"
+                                        className="border border-gray-200 rounded-lg py-1.5 sm:py-2.5 pl-4 text-[20px] placeholder:text-[#94A3B8] placeholder:text-[16px] text-gray-900 bg-white outline-none focus:ring-0 focus:border-gray-300 w-full"
+                                    />
+                                    {errors.cardName && <p className="text-red-500 text-sm">{errors.cardName}</p>}
+
+                                    <label htmlFor="cardNumber" className="text-sm text-gray-900 mt-3">Card Number</label>
+                                    <input
+                                        type="text"
+                                        name="cardNumber"
+                                        value={formData.cardNumber}
+                                        onChange={handleChange}
+                                        placeholder="Card Number"
+                                        className="border border-gray-200 rounded-lg py-1.5 sm:py-2.5 pl-4 text-[20px] placeholder:text-[#94A3B8] placeholder:text-[16px] text-gray-900 bg-white outline-none focus:ring-0 focus:border-gray-300 w-full"
+                                    />
+                                    {errors.cardNumber && <p className="text-red-500 text-sm">{errors.cardNumber}</p>}
+
+                                    <div className="flex flex-col sm:flex-row justify-between gap-2 mt-3">
+                                        <div className="flex flex-col gap-1.5 w-full sm:w-1/2">
+                                            <label htmlFor="expiry" className="text-sm text-gray-900">Expiry Date</label>
+                                            <input
+                                                type="text"
+                                                name="expiry"
+                                                value={formData.expiry}
+                                                onChange={handleChange}
+                                                placeholder="MM/YY"
+                                                className="border border-gray-200 rounded-lg py-1.5 sm:py-2.5 pl-4 text-[20px] placeholder:text-[#94A3B8] placeholder:text-[16px] text-gray-900 bg-white outline-none focus:ring-0 focus:border-gray-300 w-full"
+                                            />
+                                            {errors.expiry && <p className="text-red-500 text-sm">{errors.expiry}</p>}
+                                        </div>
+                                        <div className="flex flex-col gap-1.5 w-full sm:w-1/2 mt-3 sm:mt-0">
+                                            <label htmlFor="cvc" className="text-sm text-gray-900">CVC/CVV</label>
+                                            <input
+                                                type="text"
+                                                name="cvc"
+                                                value={formData.cvc}
+                                                onChange={handleChange}
+                                                placeholder="CVC/CVV"
+                                                className="border border-gray-200 rounded-lg py-1.5 sm:py-2.5 pl-4 text-[20px] placeholder:text-[#94A3B8] placeholder:text-[16px] text-gray-900 bg-white outline-none focus:ring-0 focus:border-gray-300 w-full"
+                                            />
+                                            {errors.cvc && <p className="text-red-500 text-sm">{errors.cvc}</p>}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        ))}
+
+                            {/* PayPal */}
+                            <div className="flex justify-between items-center bg-[#F8FAFC] mt-4 px-3 py-4">
+                                <label className="flex items-center gap-2 cursor-pointer sm:text-lg font-semibold">
+                                    <input type="radio" name="payment" className="w-4.5 h-4.5 sm:w-6 sm:h-6" disabled />
+                                    PayPal
+                                </label>
+                                <img src={`${import.meta.env.BASE_URL}icons/payment/paypal.png`} alt="Card Icon" className="w-[72.5px] h-[28.5px]" />
+                            </div>
+                        </div>
+
+                        {/* Courses section */}
+                        <div className="min-w-full sm:min-w-[32%] flex flex-col gap-2 mt-6 lg:mt-0 text-start">
+                            <h4>Order Details ({courses.length})</h4>
+                            <div className="flex flex-col gap-2 border border-gray-200 rounded-lg px-4 py-3 bg-[#F8FAFC]">
+                                {courses.map((c, index) => (
+                                    <div key={index}>
+                                        <h5 className="text-[#334155] font-medium truncate text-[16px] sm:text-lg">{c.name}</h5>
+                                        {index < courses.length - 1 && <hr className="text-gray-200 mt-2" />}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="flex justify-start items-center gap-3 border border-gray-200 rounded-lg px-4 py-4 bg-[#F8FAFC] mt-2">
+                                <img src={`${import.meta.env.BASE_URL}icons/payment/discount.svg`} alt="" />
+                                <p className="text-sm">APPLY COUPON CODE</p>
+                            </div>
+                            {/* prices */}
+                            <div className="flex flex-col gap-3 border border-gray-200 rounded-lg px-4 py-4 bg-[#F8FAFC] mt-2">
+                                <div className="flex justify-between"><p>Price</p><h5 className="text-gray-900">${cart?.price}</h5></div>
+                                <div className="flex justify-between"><p>Discount</p><h5 className="text-gray-900">${cart?.discount}</h5></div>
+                                <div className="flex justify-between"><p>Tax</p><h5 className="text-gray-900">${cart?.tax}</h5></div>
+                                <hr className="text-gray-200" />
+                                <div className="flex justify-between"><h4>Total</h4><h4 className="text-gray-900">${cart?.total}</h4></div>
+                            </div>
+                            <button
+                                onClick={handleSubmit}
+                                className="bg-[#020617] rounded-lg cursor-pointer text-white h-12 text-sm mt-2 w-full sm:w-auto">
+                                Proceed to Checkout
+                            </button>
+                        </div>
+
                     </div>
-                    <div className="flex justify-start items-center gap-3 border border-gray-200 rounded-lg px-4 py-4 bg-[#F8FAFC] mt-2">
-                        <img src={`${import.meta.env.BASE_URL}icons/payment/discount.svg`} alt="" />
-                        <p className="text-sm">APPLY COUPON CODE</p>
-                    </div>
-                    {/* prices */}
-                    <div className="flex flex-col gap-3 border border-gray-200 rounded-lg px-4 py-4 bg-[#F8FAFC] mt-2">
-                        <div className="flex justify-between"><p>Price</p><h5 className="text-gray-900">${cart?.price}</h5></div>
-                        <div className="flex justify-between"><p>Discount</p><h5 className="text-gray-900">${cart?.discount}</h5></div>
-                        <div className="flex justify-between"><p>Tax</p><h5 className="text-gray-900">${cart?.tax}</h5></div>
-                        <hr className="text-gray-200" />
-                        <div className="flex justify-between"><h4>Total</h4><h4 className="text-gray-900">${cart?.total}</h4></div>
-                    </div>
-                    <button
-                        onClick={handleSubmit}
-                        className="bg-[#020617] rounded-lg cursor-pointer text-white h-12 text-sm mt-2 w-full sm:w-auto">
-                        Proceed to Checkout
-                    </button>
-                </div>
+                )}
+
             </div>
         </div>
 

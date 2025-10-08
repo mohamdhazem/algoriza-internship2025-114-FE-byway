@@ -21,9 +21,13 @@ export const validateAndPreviewImage = (file, maxSizeMB = 2, maxWidth = 700, max
       }
 
       // Valid image — return preview URL
-      resolve(URL.createObjectURL(file));
+      resolve(img.src);
+      URL.revokeObjectURL(img.src);
     };
 
-    img.onerror = () => reject("Invalid image file");
+    img.onerror = () => {
+      URL.revokeObjectURL(img.src);
+      reject("Invalid image file");
+    };
   });
 };

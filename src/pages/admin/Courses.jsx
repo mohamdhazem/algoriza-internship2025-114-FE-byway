@@ -1,17 +1,21 @@
 import { CoursesSection } from "../../components/admin/course/CoursesSection"
 import { DashboardNav } from "../../components/admin/dashboard/DashboardNav"
+import { MobileNav } from "../../components/admin/dashboard/MobileNav"
 import { Header } from "../../components/admin/shared/Header"
 
 export const Courses = () => {
     return (
-        <div className="grid grid-cols-5 h-screen">
-            <div className="col-span-1 h-screen w-full">
-                <DashboardNav></DashboardNav>
+        <div className="grid grid-cols-1 lg:grid-cols-5 h-screen">
+            <div className="hidden lg:block lg:col-span-1 lg:h-full lg:w-full">
+                <DashboardNav/>
             </div>
-            <div className="col-span-4 px-10 py-5 bg-custom-gray">
+            <div className="lg:col-span-4 lg:px-10 lg:py-5 bg-custom-gray">
+                <div className="flex lg:hidden w-full h-20">
+                    <MobileNav />
+                </div>
                 <Header type={"Courses"}></Header>
                 <hr className="text-gray-200 my-8" />
-                <CoursesSection></CoursesSection>
+                <CoursesSection/>
             </div>
         </div>
     )

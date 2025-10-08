@@ -337,8 +337,8 @@ export const LandingContent = () => {
                             Byway. <br className="hidden md:block" /> We provide the tools and
                             skills to teach what you love.
                         </p>
-                        <button className="bg-[#020617] text-white flex items-center justify-center gap-2 px-4 py-2 md:px-5 md:py-3 rounded-lg cursor-pointer text-sm md:text-base">
-                            <p className="text-white">Start Your Instructor Journey</p>
+                        <button className="bg-[#020617] text-white flex items-center justify-center gap-2 px-4 py-3 md:px-5 md:py-3 rounded-lg cursor-pointer text-sm md:text-base">
+                            <p className="text-white text-sm sm:text-[16px]">Start Your Instructor Journey</p>
                             <ArrowRightIcon className="w-4 h-4 md:w-5 md:h-5" />
                         </button>
                     </div>
@@ -359,9 +359,9 @@ export const LandingContent = () => {
                         </p>
                         <Link
                             to={"/usercourses"}
-                            className="bg-[#020617] text-white flex items-center justify-center gap-2 px-4 py-2 md:px-5 md:py-3 rounded-lg cursor-pointer text-sm md:text-base"
+                            className="bg-[#020617] text-white flex items-center justify-center gap-2 px-4 py-3 md:px-5 md:py-3 rounded-lg cursor-pointer text-sm md:text-base"
                         >
-                            <p className="text-white">Checkout Courses</p>
+                            <p className="text-white text-sm sm:text-[16px]">Checkout Courses</p>
                             <ArrowRightIcon className="w-4 h-4 md:w-5 md:h-5" />
                         </Link>
                     </div>

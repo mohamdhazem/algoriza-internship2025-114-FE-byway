@@ -74,13 +74,24 @@ export const CourseForm = ({ mode, courseId }) => {
 
         try {
             const previewUrl = await validateAndPreviewImage(file, 2);
+
             setFormData((prev) => ({
                 ...prev,
                 ImageFile: file,
                 imageUrl: previewUrl,
             }));
+
+            setErrors((prev) => {
+                const updated = { ...prev };
+                delete updated.image;
+                return updated;
+            });
+
         } catch (err) {
-            showError(err);
+            setErrors((prev) => ({
+                ...prev,
+                image: typeof err === "string" ? err : "Invalid image file"
+            }));
         }
     };
 
@@ -122,6 +133,7 @@ export const CourseForm = ({ mode, courseId }) => {
         if (!formData.name?.trim()) newErrors.name = "Course name is required";
         if (!formData.categoryId) newErrors.category = "Category is required";
         if (!formData.level) newErrors.level = "Level is required";
+        if (formData.imageUrl === "") newErrors.image = "Image is required";
         if (!formData.instructorId) newErrors.instructorId = "Instructor is required";
         if (!formData.cost || isNaN(formData.cost)) newErrors.cost = "Cost must be a number";
         if (!formData.totalHours || isNaN(formData.totalHours)) newErrors.totalHours = "Total hours must be a number";
@@ -256,8 +268,8 @@ export const CourseForm = ({ mode, courseId }) => {
                     <div>
                         <h3 className="font-medium text-xl text-[#2B3453] mt-2">Course details</h3>
                     </div>
-                    <div className="w-full border border-gray-200 rounded-lg shadow">
-                        <div className="flex justify-start gap-8 p-3">
+                    <div className="w-fit md:w-full border border-gray-200 rounded-lg shadow">
+                        <div className="flex flex-col md:flex-row justify-start gap-8 p-3">
 
                             {/* Upload box */}
                             <div
@@ -319,6 +331,7 @@ export const CourseForm = ({ mode, courseId }) => {
                             />
                         </div>
                     </div>
+                    {errors.image && <p className="text-red-500 text-xs">{errors.image}</p>}
 
                     <div className="flex flex-col items-start w-full">
                         <label htmlFor="name" className="text-sm font-medium text-[#2B3453] mb-2">
@@ -422,8 +435,8 @@ export const CourseForm = ({ mode, courseId }) => {
                             {errors.rate && <p className="text-red-500 text-xs">{errors.rate}</p>}
                         </div>
                     </div>
-                    <div className="flex items-center gap-4 w-full">
-                        <div className="flex flex-col items-start w-1/2">
+                    <div className="flex flex-col md:flex-row items-center gap-4 w-full">
+                        <div className="flex flex-col items-start w-full md:w-1/2">
                             {/* <TextArea value={formData.description} type={"description"} onchange={handleChange}></TextArea> */}
                             <Editorhelper
                                 comingValue={formData.description}
@@ -433,7 +446,7 @@ export const CourseForm = ({ mode, courseId }) => {
                             />
                             {errors.description && <p className="text-red-500 text-xs">{errors.description}</p>}
                         </div>
-                        <div className="flex flex-col items-start w-1/2">
+                        <div className="flex flex-col items-start w-full md:w-1/2">
                             <Editorhelper
                                 comingValue={formData.certification}
                                 type={"certification"}
@@ -547,7 +560,7 @@ export const CourseForm = ({ mode, courseId }) => {
             <div className="grid grid-cols-10 gap-2 w-full h-12 py-1">
                 {((step === 2 && mode !== "view") || (step === 1)) && (
                     <Link
-                        className="col-span-1 flex items-center justify-center bg-[#ffe7e7] text-[#EB5757] rounded-lg cursor-pointer"
+                        className="col-span-3 md:col-span-1 flex items-center justify-center bg-[#ffe7e7] text-[#EB5757] rounded-lg cursor-pointer"
                         to={"/Courses"}
                     >
                         Cancel
@@ -557,7 +570,7 @@ export const CourseForm = ({ mode, courseId }) => {
                 {step === 1 && (
                     <button
                         type="button"
-                        className="col-span-9 bg-[#020617] text-white rounded-lg cursor-pointer"
+                        className="col-span-7 md:col-span-9 bg-[#020617] text-white rounded-lg cursor-pointer"
                         onClick={() => handleNext()}
                     >
                         Next
@@ -567,7 +580,7 @@ export const CourseForm = ({ mode, courseId }) => {
                 {step === 2 && mode !== "view" && (
 
                     <button
-                        className="col-span-9 bg-[#020617] text-white rounded-lg cursor-pointer"
+                        className="col-span-7 md:col-span-9 bg-[#020617] text-white rounded-lg cursor-pointer"
                         onClick={handleSubmit}
                     >
                         {mode === "add" ? "Submit" : "Update"}

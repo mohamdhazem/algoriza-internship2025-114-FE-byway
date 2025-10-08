@@ -129,12 +129,14 @@ export const UpdateInstructor = ({ setShowEditForm, instructorId }) => {
 
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-10">
-            <div className="bg-white p-6 rounded-lg w-150">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-100">
+            <div className="bg-white p-6 rounded-lg w-full sm:w-150">
                 {/* Header */}
                 <div className="flex justify-between items-center">
                     <h2 className="text-xl font-semibold">Update Instructor</h2>
-                    <button onClick={() => setShowEditForm(false)}>
+                    <button
+                        className="cursor-pointer"
+                        onClick={() => setShowEditForm(false)}>
                         <XIcon />
                     </button>
                 </div>
@@ -188,7 +190,7 @@ export const UpdateInstructor = ({ setShowEditForm, instructorId }) => {
                     </div>
 
                     {/* Job Title & Rate */}
-                    <div className="flex gap-6 w-full">
+                    <div className="flex flex-col sm:flex-row gap-6 w-full">
                         {/* Job Title */}
                         <div className="flex flex-col flex-1 items-start">
                             <label
@@ -213,7 +215,7 @@ export const UpdateInstructor = ({ setShowEditForm, instructorId }) => {
                             <RateInput value={formData.rate} onChange={handleRateChange} />
                             {errors.rate && <p className="text-red-500 text-xs">{errors.rate}</p>}
                         </div>
-                        
+
                     </div>
 
                     {/* Description */}
@@ -242,13 +244,13 @@ export const UpdateInstructor = ({ setShowEditForm, instructorId }) => {
                         <button
                             type="button"
                             onClick={() => setShowEditForm(false)}
-                            className="col-span-1 bg-[#EDEDED] text-[#8C8C8C] px-4 py-3 rounded-lg cursor-pointer"
+                            className="col-span-2 sm:col-span-1 bg-[#EDEDED] text-[#8C8C8C] px-4 py-3 rounded-lg cursor-pointer"
                         >
                             Cancel
                         </button>
                         <button
                             type="submit"
-                            className="col-span-4 bg-[#020617] text-white px-4 py-3 rounded-lg  cursor-pointer"
+                            className="col-span-3 sm:col-span-4 bg-[#020617] text-white px-4 py-3 rounded-lg cursor-pointer"
                         >
                             Update
                         </button>

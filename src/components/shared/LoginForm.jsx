@@ -66,6 +66,9 @@ export const LoginForm = ({ role }) => {
     }
 
     const googleHandler = async () => {
+        if (role.toLowerCase() !== "user")
+            return;
+        
         try {
             window.location.href = `${import.meta.env.VITE_API_BASE_URL}/Account/Google-Login`;
 
@@ -75,6 +78,9 @@ export const LoginForm = ({ role }) => {
     }
 
     const microsoftHandler = async () => {
+        if (role.toLowerCase() !== "user")
+            return;
+
         try {
             window.location.href = `${import.meta.env.VITE_API_BASE_URL}/Account/Microsoft-Login`;
 

@@ -20,7 +20,7 @@ export default function RateInput({ value, onChange, disabled = false }) {
         <div className="flex flex-col flex-1 items-start">
             <label
                 htmlFor="rate"
-                className="text-sm font-medium text-[#2B3453] mb-2"
+                className="text-sm font-medium text-[#2B3453] sm:mb-2"
             >
                 Rate
             </label>

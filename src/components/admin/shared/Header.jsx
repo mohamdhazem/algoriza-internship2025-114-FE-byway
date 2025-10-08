@@ -6,7 +6,7 @@ export const Header = ({ type }) => {
     const [userClaims] = useAtom(userAtom);
 
     return (
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center px-5">
             <div className="flex items-baseline-last">
                 <h1 className="font-ibm font-medium  text-3xl text-[#202637] pr-2">{type}</h1>
                 <p className="text-[#626C83] text-xs">
@@ -15,7 +15,7 @@ export const Header = ({ type }) => {
                     / {type}
                 </p>
             </div>
-            <div className="flex items-center justify-between gap-4">
+            <div className="hidden sm:flex items-center justify-between gap-4">
                 <div className="bg-white shadow w-12 h-12 border border-white rounded-4xl flex items-center justify-center">
                     <div className="relative ">
                         <img src={`${import.meta.env.BASE_URL}icons/alert.svg`} alt="Alert" className="" />
