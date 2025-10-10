@@ -55,9 +55,11 @@ export const Registerform = () => {
             serRefreshUserAtom();
             navigate("/Landing");
         } catch (error) {
-            const backendMsg = error.response?.data?.message || "Something went wrong";
-            console.log(error);
-            showError(backendMsg);
+            const backendMsg = error.response?.data?.errors[0] || "Something went wrong";
+
+            let newErrors = {};
+            newErrors.password = backendMsg;
+            setErrors(newErrors);
         }
     }
 
